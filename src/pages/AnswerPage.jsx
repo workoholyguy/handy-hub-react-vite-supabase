@@ -1,47 +1,41 @@
-// AnswerPage.jsx
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../client";
-import "./page-styles.css";
-import "./answer-page.css";
-import { format, compareAsc } from "date-fns";
-import Answer from "../components/Answer";
-import { id } from "date-fns/locale";
+// import "../styles/AnswerPage.css";
 
-const AnswerPage = (props) => {
-  const formatTime = function (time) {
-    const date = new Date(time);
-    return new Intl.DateTimeFormat("en-US", {
-      month: "2-digit",
-      day: "2-digit",
-      year: "numeric",
-      timeStyle: "short",
-    }).format(date);
-  };
+const AnswerPage = () => {
   const { id: param_id } = useParams();
-  const [question_with_answers_and_users, setQuestion_with_answers_and_users] =
-    useState(null);
-  //   const [answerData, setAnswersData] = useState([]);
-  //   const [usersData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [question, setQuestion] = useState(null); // Store question details
+  const [answers, setAnswers] = useState([]); // Store list of answers
+  const [loading, setLoading] = useState(true); // Handle loading state
+  const [error, setError] = useState(null); // Handle errors
 
   useEffect(() => {
-    // const fetchData = async () => {
-    const fetchData = async () => {
+    const fetchQuestionAndAnswers = async () => {
       try {
         setLoading(true);
 
-        // Fetch Question
-        const { data, error } = await supabase
-          .from("question_with_answers_and_users")
+        // Fetch question
+        const { data: questionData, error: questionError } = await supabase
+          .from("questions")
           .select("*")
-          .eq("question_id", param_id);
-        //   .order("question_created_at", { ascending: false });
+          .eq("id", param_id)
+          .single();
 
-        if (error) console.error("Error fetching view:", error);
-        else console.log("View Data:", data);
-        setQuestion_with_answers_and_users(data);
+        if (questionError) throw questionError;
+
+        setQuestion(questionData);
+
+        // Fetch answers
+        const { data: answersData, error: answersError } = await supabase
+          .from("answers")
+          .select("*")
+          .eq("question_id", param_id)
+          .order("upvotes", { ascending: false });
+
+        if (answersError) throw answersError;
+
+        setAnswers(answersData);
       } catch (err) {
         console.error("Error fetching data:", err);
         setError("Failed to load data. Please try again later.");
@@ -50,59 +44,57 @@ const AnswerPage = (props) => {
       }
     };
 
-    fetchData();
+    fetchQuestionAndAnswers();
   }, [param_id]);
+
+  const handleUpvote = async (answerId, currentUpvotes) => {
+    try {
+      const { error } = await supabase
+        .from("answers")
+        .update({ upvotes: currentUpvotes + 1 })
+        .eq("id", answerId);
+
+      if (error) throw error;
+
+      setAnswers(
+        answers.map((answer) =>
+          answer.id === answerId
+            ? { ...answer, upvotes: currentUpvotes + 1 }
+            : answer
+        )
+      );
+    } catch (err) {
+      console.error("Error upvoting answer:", err);
+      alert("Failed to upvote. Please try again.");
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
-    <>
-      <div className="master-answer-page-container">
-        <h1>Answer Page:</h1>
-        <Link
-          to={
-            "/new-answer/" +
-            param_id +
-            "/" +
-            "bcb12489-9986-4ad6-a9b3-9fb503eb16d5"
-          }
-        >
-          Submit Your Own Answer
-        </Link>
-        <div className="question-container">
-          {question_with_answers_and_users ? (
-            <>
-              <h1>{question_with_answers_and_users[0].question_title}</h1>
-              <h2>{question_with_answers_and_users[0].question_description}</h2>
-              <h3></h3>
-            </>
-          ) : (
-            <p>Loading ...</p>
-          )}
-        </div>
-        <div className="answer-container">
-          <h2>Answers:</h2>
-          {question_with_answers_and_users.length > 0 ? (
-            <>
-              {question_with_answers_and_users.map((row, index) => (
-                <Answer
-                  key={index}
-                  answerId={row.answer_id}
-                  content={row.answer_content}
-                  created_at={row.answer_created_at}
-                  upvotes={row.answer_upvotes}
-                  accepted={row.answer_is_accepted}
-                  name={row.answer_username} // Ensure `usersData` exists
-                />
-              ))}
-            </>
-          ) : (
-            <p>No answers yet. Be the first to answer!</p>
-          )}
-        </div>
+    <div className="answer-page-container">
+      <h1>Answers for: {question.title}</h1>
+      <p>{question.description}</p>
+      <Link to={`/new-answer/${param_id}/${question.user_id}`}>
+        Submit Your Answer
+      </Link>
+      <div className="answers-section">
+        {answers.length > 0 ? (
+          answers.map((answer) => (
+            <div key={answer.id} className="answer-card">
+              <p>{answer.content}</p>
+              <p>Upvotes: {answer.upvotes}</p>
+              <button onClick={() => handleUpvote(answer.id, answer.upvotes)}>
+                Upvote
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No answers yet. Be the first to answer!</p>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

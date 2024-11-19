@@ -6,6 +6,9 @@ import { useRoutes, Navigate } from "react-router-dom";
 // Hook to define our application's routes.
 import { Link } from "react-router-dom"; // Link component for navigation.
 import { supabase } from "./client";
+import { Routes, Route } from "react-router-dom";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 // Imports the pages that will be displayed for each route.
 // Pages
@@ -16,37 +19,13 @@ import NewQuestion from "./pages/NewQuestion";
 import AnswerPage from "./pages/AnswerPage";
 import NewAnswer from "./pages/NewAnswer";
 import Account from "./pages/Account";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
 
 // Auth Context
-export const AuthContext = createContext(null);
+// export const AuthContext = createContext(null);
+// Components
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  // Check for an existing session on mount
-  useEffect(() => {
-    const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      setUser(session?.user || null);
-    };
-
-    checkSession();
-
-    const { subscription } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user || null);
-      }
-    );
-
-    return () => {
-      subscription?.unsubscribe();
-    };
-  }, []);
-  // Defines the routes for the application. Each route path corresponds to a specific component.
   const element = useRoutes([
     {
       path: "/",
@@ -55,7 +34,7 @@ function App() {
     {
       path: "/account",
       element: (
-        <PrivateRoute user={user}>
+        <PrivateRoute>
           <Account />
         </PrivateRoute>
       ),
@@ -63,7 +42,7 @@ function App() {
     {
       path: "/tables",
       element: (
-        <PrivateRoute user={user}>
+        <PrivateRoute>
           <AllTables />
         </PrivateRoute>
       ),
@@ -71,7 +50,7 @@ function App() {
     {
       path: "/feed",
       element: (
-        <PrivateRoute user={user}>
+        <PrivateRoute>
           <Feed />
         </PrivateRoute>
       ),
@@ -79,7 +58,7 @@ function App() {
     {
       path: "/new-question",
       element: (
-        <PrivateRoute user={user}>
+        <PrivateRoute>
           <NewQuestion />
         </PrivateRoute>
       ),
@@ -87,7 +66,7 @@ function App() {
     {
       path: "/answer-page/:id",
       element: (
-        <PrivateRoute user={user}>
+        <PrivateRoute>
           <AnswerPage />
         </PrivateRoute>
       ),
@@ -95,7 +74,7 @@ function App() {
     {
       path: "/new-answer/:id/:user_id",
       element: (
-        <PrivateRoute user={user}>
+        <PrivateRoute>
           <NewAnswer />
         </PrivateRoute>
       ),
@@ -111,26 +90,17 @@ function App() {
   ]);
 
   return (
-    <>
-      <AuthContext.Provider value={{ user, setUser }}>
-        <div className="app-master-container">
-          <div className="side-nav">
-            <Link to="/account">Account</Link>
-            <Link to="/">Home</Link>
-            <Link to="/tables">View All Current Tables!</Link>
-            <Link to="/feed">Feed</Link>
-            <Link to="/new-question">New Question</Link>
-          </div>
-          <div className="main">{element}</div>
-        </div>
-      </AuthContext.Provider>
-    </>
+    <div className="app-master-container">
+      <div className="side-nav">
+        <Link to="/account">Account</Link>
+        <Link to="/">Home</Link>
+        <Link to="/tables">View All Current Tables!</Link>
+        <Link to="/feed">Feed</Link>
+        <Link to="/new-question">New Question</Link>
+      </div>
+      <div className="main">{element}</div>
+    </div>
   );
-}
-
-// PrivateRoute Component
-function PrivateRoute({ user, children }) {
-  return user ? children : <Navigate to="/sign-in" />;
 }
 
 export default App;

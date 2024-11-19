@@ -1,0 +1,44 @@
+.create-master-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.create-master-container h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.create-master-container .form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-master-container .mini-container label {
+  font-weight: bold;
+  color: #555;
+}
+
+.create-master-container .mini-container input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.create-master-container button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.create-master-container button:hover {
+  background-color: #0056b3;
+}

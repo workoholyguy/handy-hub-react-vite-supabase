@@ -7,6 +7,7 @@ import { format, compareAsc } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
 import { id } from "date-fns/locale";
+import "../styles/SignUp.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -16,15 +17,22 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signUp({
+
+    if (!email || !password) {
+      setError("Please enter both email and password.");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
 
     if (error) {
-      setError("Error signing up. Please try again.");
+      setError(error.message || "Error signing up. Please try again.");
     } else {
-      navigate("/sign-in"); // Redirect to Sign In page
+      alert("Sign-up successful! Please verify your email.");
+      navigate("/sign-in");
     }
   };
 

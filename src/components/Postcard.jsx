@@ -21,9 +21,9 @@ function Postcard(props) {
           <h2>
             <strong>Title </strong>: {props.title}
           </h2>
-          <p>
+          {/* <p>
             <strong>Description </strong>: {props.description}
-          </p>
+          </p> */}
           <p>
             <strong>Image </strong>:{" "}
             <img

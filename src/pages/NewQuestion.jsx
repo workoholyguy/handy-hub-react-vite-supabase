@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { format, compareAsc } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import "../styles/NewQuestion.css";
 
 const NewQuestion = () => {
   const navigate = useNavigate();

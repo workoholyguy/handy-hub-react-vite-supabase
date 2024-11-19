@@ -8,10 +8,23 @@ import { Link, useParams } from "react-router-dom";
 import { id } from "date-fns/locale";
 
 const Account = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      alert("Error signing out: " + error.message);
+    } else {
+      navigate("/sign-in");
+    }
+  };
+
   return (
-    <>
-      <div className="master-account-container">Account Home Page</div>
-    </>
+    <div>
+      <h1>Account</h1>
+      <button onClick={handleSignOut}>Sign Out</button>
+    </div>
   );
 };
 

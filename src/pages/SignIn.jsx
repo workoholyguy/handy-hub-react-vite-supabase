@@ -7,6 +7,7 @@ import { format, compareAsc } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
 import { id } from "date-fns/locale";
+import "../styles/SignIn.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -16,15 +17,16 @@ const SignIn = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({
+
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
-      setError("Invalid email or password.");
+      setError(error.message || "Invalid email or password.");
     } else {
-      navigate("/feed"); // Redirect to Feed after successful login
+      navigate("/feed");
     }
   };
 
@@ -35,14 +37,14 @@ const SignIn = () => {
       <form onSubmit={handleSignIn}>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="admin@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="admin"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
