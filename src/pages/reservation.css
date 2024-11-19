@@ -1,0 +1,13 @@
+.tickets-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation-master-container {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 1%;
+}

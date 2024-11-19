@@ -1,0 +1,64 @@
+.master-postcard-container {
+  border-radius: 10px;
+  border-style: double;
+  border-color: #00000043;
+  height: auto;
+  box-shadow: 0 0 5px 2px #faf9f94d;
+  margin: 20px;
+  padding: 25px;
+  text-align: center;
+  width: 300px;
+  background-color: #5b5a5a;
+}
+
+/* Add these styles to your CSS file */
+.red {
+  box-shadow: 15px -20px 15px #be31314d;
+}
+
+.green {
+  box-shadow: 15px -20px 15px #38be314d;
+}
+
+.blue {
+  box-shadow: 15px -20px 15px #3131be4d;
+}
+
+.purple {
+  box-shadow: 15px -20px 15px #7531be4d;
+}
+
+.yellow {
+  box-shadow: 15px -20px 15px #bebc314d;
+}
+
+.orange {
+  box-shadow: 15px -20px 15px #be70314d;
+}
+
+.pink {
+  box-shadow: 15px -20px 15px #be31694d;
+}
+
+.rainbow {
+  /* Example of rainbow-like shadow */
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3), 0 6px 20px rgba(255, 165, 0, 0.3),
+    0 8px 20px rgba(255, 255, 0, 0.3), 0 10px 20px rgba(0, 255, 0, 0.3),
+    0 12px 20px rgba(0, 0, 255, 0.3), 0 14px 20px rgba(75, 0, 130, 0.3),
+    0 16px 20px rgba(238, 130, 238, 0.3);
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.crewmate-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
