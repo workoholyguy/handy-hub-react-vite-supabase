@@ -34,6 +34,52 @@ const Feed = () => {
     setSearchTerm(e.target.value);
   };
 
+  const handleDeleteQuestion = async (questionId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this question? This action cannot be undone."
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const { error } = await supabase
+        .from("questions")
+        .delete()
+        .eq("id", questionId);
+
+      if (error) throw error;
+
+      // Remove the question from local state
+      setQuestionsData(questionsData.filter((q) => q.id !== questionId));
+      alert("Question deleted successfully.");
+    } catch (err) {
+      console.error("Error deleting question:", err);
+      alert("Failed to delete question. Please try again.");
+    }
+  };
+
+  const handleUpvote = async (questionId, currentUpvotes) => {
+    try {
+      const { error } = await supabase
+        .from("questions")
+        .update({ upvotes: currentUpvotes + 1 })
+        .eq("id", questionId);
+
+      if (error) throw error;
+
+      // Update local state
+      setQuestionsData(
+        questionsData.map((question) =>
+          question.id === questionId
+            ? { ...question, upvotes: currentUpvotes + 1 }
+            : question
+        )
+      );
+    } catch (err) {
+      console.error("Error upvoting question:", err);
+      alert("Failed to upvote. Please try again.");
+    }
+  };
+
   return (
     <div>
       <div className="feed-master-container">
@@ -58,15 +104,23 @@ const Feed = () => {
         </div>
         <div className="questions-container">
           {questionsData.map((question, index) => (
-            <Postcard
-              key={index}
-              id={question.id}
-              time={question.created_at}
-              title={question.title}
-              description={question.description}
-              url={question.image_url || null}
-              upvotes={question.upvotes}
-            />
+            <div key={index} className="post-container">
+              <Postcard
+                id={question.id}
+                time={question.created_at}
+                title={question.title}
+                description={question.description}
+                url={question.image_url || null}
+                upvotes={question.upvotes}
+                onUpvote={handleUpvote} // Pass handleUpvote as a prop
+              />
+              <button
+                className="delete-btn"
+                onClick={() => handleDeleteQuestion(question.id)}
+              >
+                Delete Question
+              </button>
+            </div>
           ))}
         </div>
       </div>

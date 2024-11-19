@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../client";
-// import "../styles/AnswerPage.css";
+// import "../styles/answer-page.css";
 
 const AnswerPage = () => {
   const { id: param_id } = useParams();
@@ -47,25 +47,26 @@ const AnswerPage = () => {
     fetchQuestionAndAnswers();
   }, [param_id]);
 
-  const handleUpvote = async (answerId, currentUpvotes) => {
+  const handleDeleteAnswer = async (answerId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this answer? This action cannot be undone."
+    );
+    if (!confirmDelete) return;
+
     try {
       const { error } = await supabase
         .from("answers")
-        .update({ upvotes: currentUpvotes + 1 })
+        .delete()
         .eq("id", answerId);
 
       if (error) throw error;
 
-      setAnswers(
-        answers.map((answer) =>
-          answer.id === answerId
-            ? { ...answer, upvotes: currentUpvotes + 1 }
-            : answer
-        )
-      );
+      // Remove the answer from local state
+      setAnswers(answers.filter((answer) => answer.id !== answerId));
+      alert("Answer deleted successfully.");
     } catch (err) {
-      console.error("Error upvoting answer:", err);
-      alert("Failed to upvote. Please try again.");
+      console.error("Error deleting answer:", err);
+      alert("Failed to delete answer. Please try again.");
     }
   };
 
@@ -85,8 +86,8 @@ const AnswerPage = () => {
             <div key={answer.id} className="answer-card">
               <p>{answer.content}</p>
               <p>Upvotes: {answer.upvotes}</p>
-              <button onClick={() => handleUpvote(answer.id, answer.upvotes)}>
-                Upvote
+              <button onClick={() => handleDeleteAnswer(answer.id)}>
+                Delete
               </button>
             </div>
           ))
