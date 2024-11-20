@@ -58,7 +58,16 @@ function App() {
           <Account session={session} />
         </PrivateRoute>
       ) : (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            style: {
+              input: { color: "white" },
+            },
+            theme: ThemeSupa,
+          }}
+          providers={null}
+        />
       ),
     },
     {
@@ -68,7 +77,16 @@ function App() {
           <AllTables />
         </PrivateRoute>
       ) : (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            style: {
+              input: { color: "white" },
+            },
+            theme: ThemeSupa,
+          }}
+          providers={null}
+        />
       ),
     },
     {
@@ -78,7 +96,16 @@ function App() {
           <Feed />
         </PrivateRoute>
       ) : (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            style: {
+              input: { color: "white" },
+            },
+            theme: ThemeSupa,
+          }}
+          providers={null}
+        />
       ),
     },
     {
@@ -88,7 +115,16 @@ function App() {
           <NewQuestion />
         </PrivateRoute>
       ) : (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            style: {
+              input: { color: "white" },
+            },
+            theme: ThemeSupa,
+          }}
+          providers={null}
+        />
       ),
     },
     {
@@ -98,7 +134,16 @@ function App() {
           <AnswerPage />
         </PrivateRoute>
       ) : (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            style: {
+              input: { color: "white" },
+            },
+            theme: ThemeSupa,
+          }}
+          providers={null}
+        />
       ),
     },
     {
@@ -108,7 +153,16 @@ function App() {
           <NewAnswer />
         </PrivateRoute>
       ) : (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            style: {
+              input: { color: "white" },
+            },
+            theme: ThemeSupa,
+          }}
+          providers={null}
+        />
       ),
     },
   ]);
