@@ -16,6 +16,7 @@
 }
 
 .create-master-container .mini-container {
+  /* display: flex; */
   margin-bottom: 10px;
 }
 

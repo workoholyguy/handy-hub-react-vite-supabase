@@ -1,17 +1,13 @@
 // App.jsx
-// Imports necessary hooks from React and routing components from react-router-dom.
-import { useState, useEffect, createContext, useContext } from "react";
-import "./App.css"; // Imports the main CSS file for this component's styling.
-import { useRoutes, Navigate } from "react-router-dom";
-// Hook to define our application's routes.
-import { Link } from "react-router-dom"; // Link component for navigation.
+import { useState, useEffect } from "react";
+import "./App.css";
+import { useRoutes, Link } from "react-router-dom";
 import { supabase } from "./client";
-import { Routes, Route } from "react-router-dom";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
-// Imports the pages that will be displayed for each route.
-// Pages
+// Imports for existing components and pages
+
 import Home from "./pages/Home";
 import AllTables from "./pages/AllTables";
 import Feed from "./pages/Feed";
@@ -20,72 +16,100 @@ import AnswerPage from "./pages/AnswerPage";
 import NewAnswer from "./pages/NewAnswer";
 import Account from "./pages/Account";
 
-// Auth Context
-// export const AuthContext = createContext(null);
-// Components
+// Authenticated route wrapper
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
+  const [session, setSession] = useState(null); // State to track user session
+
+  // Supabase Auth state listener
+  useEffect(() => {
+    const initializeSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setSession(session);
+    };
+
+    initializeSession();
+
+    const authListener = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    // Correctly handle subscription cleanup with null-check
+    return () => {
+      if (authListener?.subscription) {
+        authListener.subscription.unsubscribe();
+      }
+    };
+  }, []);
+
+  // Routes definition, integrating session-based authentication
   const element = useRoutes([
     {
       path: "/",
-      element: <Home />,
+      element: <Home />, // Unrestricted access to Home page
     },
     {
       path: "/account",
-      element: (
+      element: session ? (
         <PrivateRoute>
-          <Account />
+          <Account session={session} />
         </PrivateRoute>
+      ) : (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
       ),
     },
     {
       path: "/tables",
-      element: (
+      element: session ? (
         <PrivateRoute>
           <AllTables />
         </PrivateRoute>
+      ) : (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
       ),
     },
     {
       path: "/feed",
-      element: (
+      element: session ? (
         <PrivateRoute>
           <Feed />
         </PrivateRoute>
+      ) : (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
       ),
     },
     {
       path: "/new-question",
-      element: (
+      element: session ? (
         <PrivateRoute>
           <NewQuestion />
         </PrivateRoute>
+      ) : (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
       ),
     },
     {
       path: "/answer-page/:id",
-      element: (
+      element: session ? (
         <PrivateRoute>
           <AnswerPage />
         </PrivateRoute>
+      ) : (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
       ),
     },
     {
       path: "/new-answer/:id/:user_id",
-      element: (
+      element: session ? (
         <PrivateRoute>
           <NewAnswer />
         </PrivateRoute>
+      ) : (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
       ),
-    },
-    {
-      path: "/sign-in",
-      element: <SignIn />,
-    },
-    {
-      path: "/sign-up",
-      element: <SignUp />,
     },
   ]);
 
@@ -98,7 +122,8 @@ function App() {
         <Link to="/feed">Feed</Link>
         <Link to="/new-question">New Question</Link>
       </div>
-      <div className="main">{element}</div>
+      <div className="main">{element}</div>{" "}
+      {/* Always render the defined routes */}
     </div>
   );
 }

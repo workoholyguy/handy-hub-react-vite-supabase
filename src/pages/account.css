@@ -1,0 +1,9 @@
+* {
+  /* border: 2px solid yellow; */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

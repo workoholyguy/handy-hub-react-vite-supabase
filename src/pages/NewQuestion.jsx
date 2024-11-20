@@ -97,7 +97,7 @@ const NewQuestion = () => {
                 type="text"
                 id="title"
                 name="title"
-                placeholder="Enter CrewMates Name"
+                placeholder="Enter Question Title"
                 onChange={handleChange}
               />
             </div>

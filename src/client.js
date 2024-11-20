@@ -1,5 +1,6 @@
 // Imports the createClient function from Supabase, used to connect to the Supabase database
 import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
 
 // Retrieves the Supabase URL and API Key from environment variables
 let URL = import.meta.env.VITE_SUPABASE_URL;
@@ -12,3 +13,4 @@ if (!URL || !API_KEY) {
 
 // Initializes a new Supabase client using the provided URL and API Key
 export const supabase = createClient(URL, API_KEY);
+// const App = () => <Auth supabaseClient={supabase} />;
