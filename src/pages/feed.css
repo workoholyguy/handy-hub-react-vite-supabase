@@ -36,3 +36,9 @@ textarea {
   margin-bottom: 1rem;
   font-size: 1rem;
 }
+
+.post-container {
+  border: 2px solid black;
+  background-color: #848484;
+  border-radius: 12px;
+}

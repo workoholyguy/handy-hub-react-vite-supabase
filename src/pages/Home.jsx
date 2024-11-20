@@ -51,8 +51,9 @@ function Home() {
           <h2>How It Works</h2>
           <ol>
             <li>
-              <strong>Sign Up:</strong>{" "}
-              <Link to="/signup">Create an account</Link> to join the community.
+              <strong>Sign Up:&nbsp;</strong>{" "}
+              <Link to="/signup">&nbsp;Create an account</Link> &nbsp;to join
+              the community.
             </li>
             <li>
               <strong>Ask a Question:</strong> Spend $5 to post a question.
