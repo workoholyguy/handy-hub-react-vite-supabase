@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { format, compareAsc } from "date-fns";
 import { supabase } from "../client";
-import "./card-style.css";
-import "./answer.css";
+// import "./card-style.css";
+import "./answer.css"; // Import the CSS file
 
 const Answer = (props) => {
   const id = props.answerId;

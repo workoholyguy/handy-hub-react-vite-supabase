@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../client";
-// import "../styles/answer-page.css";
+import "./answer-page.css";
 
 const AnswerPage = () => {
   const { id: param_id } = useParams();
