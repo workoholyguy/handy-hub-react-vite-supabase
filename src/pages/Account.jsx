@@ -14,12 +14,20 @@ const Account = ({ session }) => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
+    try {
+      const { error } = await supabase.auth.signOut();
 
-    if (error) {
-      alert("Error signing out: " + error.message);
-    } else {
-      navigate("/sign-in");
+      if (error) {
+        console.error("Error signing out:", error.message);
+        alert("Error signing out. Please try again later.");
+        return;
+      }
+
+      alert("You have been signed out successfully.");
+      navigate("/");
+    } catch (err) {
+      console.error("Unexpected error during sign-out:", err);
+      alert("An unexpected error occurred. Please try again.");
     }
   };
 
