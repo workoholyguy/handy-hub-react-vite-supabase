@@ -62,6 +62,8 @@ function App() {
         localization={{
           variables: {
             sign_in: {
+              email_label: 'Login: Use "admin@example.com" as login',
+              password_label: 'Password: Use "admin" as pass',
               email_input_placeholder: 'Use "admin@example.com" as login',
               password_input_placeholder: 'Use "admin" as pass',
             },
