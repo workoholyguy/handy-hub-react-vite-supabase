@@ -19,7 +19,7 @@ const Account = ({ session }) => {
     if (error) {
       alert("Error signing out: " + error.message);
     } else {
-      navigate("/sign-in");
+      navigate("/");
     }
   };
 
