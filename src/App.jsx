@@ -66,7 +66,7 @@ function App() {
             },
             theme: ThemeSupa,
           }}
-          providers={null}
+          providers={"github"}
         />
       ),
     },
@@ -85,7 +85,7 @@ function App() {
             },
             theme: ThemeSupa,
           }}
-          providers={null}
+          providers={"github"}
         />
       ),
     },
@@ -104,7 +104,7 @@ function App() {
             },
             theme: ThemeSupa,
           }}
-          providers={null}
+          providers={"github"}
         />
       ),
     },
@@ -123,7 +123,7 @@ function App() {
             },
             theme: ThemeSupa,
           }}
-          providers={null}
+          providers={"github"}
         />
       ),
     },
@@ -142,7 +142,7 @@ function App() {
             },
             theme: ThemeSupa,
           }}
-          providers={null}
+          providers={"github"}
         />
       ),
     },
@@ -161,7 +161,7 @@ function App() {
             },
             theme: ThemeSupa,
           }}
-          providers={null}
+          providers={"github"}
         />
       ),
     },
