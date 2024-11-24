@@ -45,6 +45,24 @@ function App() {
     };
   }, []);
 
+  // Helper function for routes requiring authentication
+  const requireAuth = (Component) => {
+    return session ? (
+      <PrivateRoute>{<Component session={session} />}</PrivateRoute>
+    ) : (
+      <Auth
+        supabaseClient={supabase}
+        appearance={{
+          style: {
+            input: { color: "white" },
+          },
+          theme: ThemeSupa,
+        }}
+        providers={["github"]}
+      />
+    );
+  };
+
   // Routes definition, integrating session-based authentication
   const element = useRoutes([
     {
@@ -53,117 +71,27 @@ function App() {
     },
     {
       path: "/account",
-      element: session ? (
-        <PrivateRoute>
-          <Account session={session} />
-        </PrivateRoute>
-      ) : (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            style: {
-              input: { color: "white" },
-            },
-            theme: ThemeSupa,
-          }}
-          // providers={"github"}
-        />
-      ),
+      element: requireAuth(Account),
     },
     {
       path: "/tables",
-      element: session ? (
-        <PrivateRoute>
-          <AllTables />
-        </PrivateRoute>
-      ) : (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            style: {
-              input: { color: "white" },
-            },
-            theme: ThemeSupa,
-          }}
-          // providers={"github"}
-        />
-      ),
+      element: requireAuth(Account),
     },
     {
       path: "/feed",
-      element: session ? (
-        <PrivateRoute>
-          <Feed />
-        </PrivateRoute>
-      ) : (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            style: {
-              input: { color: "white" },
-            },
-            theme: ThemeSupa,
-          }}
-          // providers={"github"}
-        />
-      ),
+      element: requireAuth(AllTables),
     },
     {
       path: "/new-question",
-      element: session ? (
-        <PrivateRoute>
-          <NewQuestion />
-        </PrivateRoute>
-      ) : (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            style: {
-              input: { color: "white" },
-            },
-            theme: ThemeSupa,
-          }}
-          // providers={"github"}
-        />
-      ),
+      element: requireAuth(NewQuestion),
     },
     {
       path: "/answer-page/:id",
-      element: session ? (
-        <PrivateRoute>
-          <AnswerPage />
-        </PrivateRoute>
-      ) : (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            style: {
-              input: { color: "white" },
-            },
-            theme: ThemeSupa,
-          }}
-          // providers={"github"}
-        />
-      ),
+      element: requireAuth(AnswerPage),
     },
     {
       path: "/new-answer/:id/:user_id",
-      element: session ? (
-        <PrivateRoute>
-          <NewAnswer />
-        </PrivateRoute>
-      ) : (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            style: {
-              input: { color: "white" },
-            },
-            theme: ThemeSupa,
-          }}
-          // providers={"github"}
-        />
-      ),
+      element: requireAuth(NewAnswer),
     },
   ]);
 
