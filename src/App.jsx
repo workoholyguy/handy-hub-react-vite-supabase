@@ -59,6 +59,18 @@ function App() {
           theme: ThemeSupa,
         }}
         providers={["github"]}
+        localization={{
+          variables: {
+            sign_in: {
+              email_input_placeholder: 'Use "admin@example.com" as login',
+              password_input_placeholder: 'Use "admin" as pass',
+            },
+            sign_up: {
+              email_input_placeholder: "Enter your email address",
+              password_input_placeholder: "Choose a strong password",
+            },
+          },
+        }}
       />
     );
   };
