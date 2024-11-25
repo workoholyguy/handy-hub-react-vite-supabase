@@ -7,3 +7,30 @@ form {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.btn-logout {
+  background-color: rgb(255, 86, 86);
+  font-weight: bolder;
+}
+.btn-logout:hover {
+  background-color: rgb(255, 157, 157);
+}
+.btn-update {
+  background-color: rgb(55, 88, 255);
+  font-weight: bolder;
+}
+.btn-update:hover {
+  background-color: rgb(118, 139, 247);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* gap: 12%; */
+}
+
+.user-data {
+  border: solid white 2px;
+  padding: 0.5%;
+}
