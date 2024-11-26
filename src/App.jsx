@@ -89,11 +89,11 @@ function App() {
     },
     {
       path: "/tables",
-      element: requireAuth(Account),
+      element: requireAuth(AllTables),
     },
     {
       path: "/feed",
-      element: requireAuth(AllTables),
+      element: requireAuth(Feed),
     },
     {
       path: "/new-question",

@@ -36,12 +36,12 @@ const Account = ({ session }) => {
         data: { user },
       } = await supabase.auth.getUser();
 
-      console.log(user);
-      console.log(user.user_metadata.full_name);
-      console.log();
-      console.log("Been Verified: ", user.user_metadata.email_verified);
-      console.log("Phone: ", user.phone);
-      console.log("Updating Mode: ", showModal);
+      // console.log(user);
+      // console.log(user.user_metadata.full_name);
+      // console.log();
+      // console.log("Been Verified: ", user.user_metadata.email_verified);
+      // console.log("Phone: ", user.phone);
+      // console.log("Updating Mode: ", showModal);
     };
 
     getUserData(session);
@@ -101,7 +101,7 @@ const Account = ({ session }) => {
       </h1>
       {/* <h1>Welcome, {session?.user?.email || "User"}!</h1> */}
       <h2>
-        We have your email as:
+        We have your email as: <br />
         <span className="user-data">
           {session?.user?.email || "Unavailable"}
         </span>

@@ -8,6 +8,7 @@ import Table from "../components/Table";
 
 function AllTables() {
   // State variables for storing data for each table from the database.
+  const [profilesData, setProfilesData] = useState([]);
   const [usersData, setUsersData] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
   const [answersData, setAnswersData] = useState([]);
@@ -22,6 +23,7 @@ function AllTables() {
       };
 
       // Fetch data for each table
+      fetchTableData("profiles", setProfilesData);
       fetchTableData("users", setUsersData);
       fetchTableData("questions", setQuestionsData);
       fetchTableData("answers", setAnswersData);
@@ -32,6 +34,7 @@ function AllTables() {
   }, []);
 
   // Column definitions for each table, specifying the keys to display.
+
   const usersColumns = [
     { key: "id", label: "User ID" },
     { key: "username", label: "Username" },
@@ -60,16 +63,41 @@ function AllTables() {
     { key: "upvotes", label: "Upvotes" },
   ];
 
+  // Modify AllTables.js to Handle Null Values
+  const profilesColumns = [
+    { key: "id", label: "User ID" },
+    { key: "full_name", label: "Name" },
+    { key: "email", label: "Email" },
+    { key: "phone", label: "Phone" },
+    { key: "created_at", label: "Created At" },
+  ];
+
+  const renderCell = (key, row) => {
+    if (!row[key]) {
+      return <span style={{ color: "gray" }}>Unavailable</span>;
+    }
+    return row[key];
+  };
   return (
     <>
+      {console.log(profilesData)}
       <div className="all-tables-master-container">
         <div className="all-tables-container">
+          <h2>Profiles:</h2>
+          {/* <Table columns={profilesColumns} data={profilesData} /> */}
+          <Table
+            columns={profilesColumns}
+            data={profilesData.map((row) => ({
+              ...row,
+              full_name: row.full_name || "Default Name",
+              email: row.email || "Unavailable",
+              phone: row.phone || "N/A",
+            }))}
+          />
           <h2>Users:</h2>
           <Table columns={usersColumns} data={usersData} />
-
           <h2>Questions:</h2>
           <Table columns={questionsColumns} data={questionsData} />
-
           <h2>Answers:</h2>
           <Table columns={answersColumns} data={answersData} />
         </div>
