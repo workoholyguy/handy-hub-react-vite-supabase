@@ -36,7 +36,7 @@ const Account = ({ session }) => {
         data: { user },
       } = await supabase.auth.getUser();
 
-      // console.log(user);
+      console.log(user);
       // console.log(user.user_metadata.full_name);
       // console.log();
       // console.log("Been Verified: ", user.user_metadata.email_verified);
@@ -59,11 +59,34 @@ const Account = ({ session }) => {
 
   const handleUpdateUserInfo = async ({ email, fullName, phone }) => {
     console.log("Update Button Pressed");
+    const formatedPhone = formatPhoneNumber(phone);
     try {
-      const updates = { email, data: { full_name: fullName, phone } };
-      const { error } = await supabase.auth.updateUser(updates);
-      if (error) throw error;
+      // Update the Auth user
+      const { error: authError } = await supabase.auth.updateUser({
+        email,
+        data: { full_name: fullName, phone: phone, formatedPhone },
+      });
+      if (authError) throw authError;
+
+      // Sync the changes to the profiles table
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .update({
+          full_name: fullName,
+          email,
+          phone: formatedPhone,
+        })
+        .eq("id", session?.user?.id); // Match the user ID
+      if (profileError) throw profileError;
+
+      // Close the modal if successful
       setShowModal(false);
+      alert("User Information Updated Succcesfully");
+
+      // const updates = { email, data: { full_name: fullName, formatedPhone } };
+      // const { error } = await supabase.auth.updateUser(updates);
+      // if (error) throw error;
+      // setShowModal(false);
     } catch (error) {
       console.error("Error Caught: ", error);
       alert("Failed to update user info.");
@@ -89,6 +112,8 @@ const Account = ({ session }) => {
     return `(${areaCode}) ${middle}-${lastFour}`;
   };
 
+  console.log("User Metadata:", session?.user?.user_metadata);
+
   return (
     <div className="account-container">
       <h1>
@@ -109,8 +134,8 @@ const Account = ({ session }) => {
       <h2>
         We have your phone number as: <br />
         <span className="user-data">
-          {session?.user?.user_metadata.phone
-            ? formatPhoneNumber(session?.user?.user_metadata.phone)
+          {session?.user?.user_metadata?.formatedPhone
+            ? session?.user?.user_metadata?.formatedPhone
             : "Unavailable"}
         </span>
       </h2>

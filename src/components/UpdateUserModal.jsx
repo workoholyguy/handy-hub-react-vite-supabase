@@ -3,7 +3,7 @@ import "./update-modal.css";
 
 const UpdateUserModal = ({ user, onClose, onUpdate }) => {
   const [email, setEmail] = useState(user?.email || "");
-  const [phone, setPhone] = useState(user?.phone || "");
+  const [phone, setPhone] = useState(user?.user_metadata?.formatedPhone || "");
   const [fullName, setFullName] = useState(
     user?.user_metadata?.full_name || ""
   );
@@ -43,7 +43,7 @@ const UpdateUserModal = ({ user, onClose, onUpdate }) => {
                   type="text"
                   name="phone_form"
                   value={phone}
-                  placeholder="+1 (000) 123-4567"
+                  // placeholder="+1 (000) 123-4567"
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </label>

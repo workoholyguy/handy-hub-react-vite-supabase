@@ -78,6 +78,14 @@ function AllTables() {
     }
     return row[key];
   };
+
+  console.log("Profiles Data:", profilesData);
+  // console.log("User Metadata:", session?.user?.user_metadata);
+  console.log(
+    "Profiles Phone Column:",
+    profilesData.map((row) => row.phone)
+  );
+
   return (
     <>
       {console.log(profilesData)}
