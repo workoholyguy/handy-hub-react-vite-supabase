@@ -36,6 +36,8 @@ const AnswerPage = () => {
         if (answersError) throw answersError;
 
         setAnswers(answersData);
+        console.log(answersData);
+        // setAnswerUpvotes
       } catch (err) {
         console.error("Error fetching data:", err);
         setError("Failed to load data. Please try again later.");
@@ -69,6 +71,31 @@ const AnswerPage = () => {
       alert("Failed to delete answer. Please try again.");
     }
   };
+  const handleUpvoteAnswer = async (answerId, currentUpvotes) => {
+    try {
+      const { error } = await supabase
+        .from("answers")
+        .update({ upvotes: currentUpvotes + 1 }) //// Increment upvotes in Supabase
+        .eq("id", answerId);
+
+      if (error) throw error;
+
+      // Remove the answer from local state
+      // console.log(answers);
+      setAnswers((prevAnswers) =>
+        prevAnswers.map((answer) =>
+          answer.id === answerId
+            ? { ...answer, upvotes: answer.upvotes + 1 }
+            : answer
+        )
+      );
+
+      // alert("Answer deleted successfully.");
+    } catch (err) {
+      console.error("Error Upvoting answer:", err);
+      alert("Failed to Upvote. Please try again.");
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -85,8 +112,19 @@ const AnswerPage = () => {
           answers.map((answer) => (
             <div key={answer.id} className="answer-card">
               <p>{answer.content}</p>
-              <p>Upvotes: {answer.upvotes}</p>
-              <button onClick={() => handleDeleteAnswer(answer.id)}>
+              <p>
+                Upvotes: {answer.upvotes} <br />
+                <button
+                  className="upvote-btn"
+                  onClick={() => handleUpvoteAnswer(answer.id, answer.upvotes)} // Call the upvote handler
+                >
+                  Upvote
+                </button>
+              </p>
+              <button
+                className="btn-logout"
+                onClick={() => handleDeleteAnswer(answer.id)}
+              >
                 Delete
               </button>
             </div>

@@ -115,7 +115,7 @@ const Feed = () => {
                 onUpvote={handleUpvote} // Pass handleUpvote as a prop
               />
               <button
-                className="delete-btn"
+                className="delete-btn btn-logout"
                 onClick={() => handleDeleteQuestion(question.id)}
               >
                 Delete Question
