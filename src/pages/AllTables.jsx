@@ -5,6 +5,7 @@ import { supabase } from "../client";
 import "./page-styles.css";
 import "./all-tables.css";
 import Table from "../components/Table";
+import { Link, useParams } from "react-router-dom";
 
 function AllTables() {
   // State variables for storing data for each table from the database.
@@ -79,35 +80,75 @@ function AllTables() {
     return row[key];
   };
 
-  console.log("Profiles Data:", profilesData);
-  // console.log("User Metadata:", session?.user?.user_metadata);
-  console.log(
-    "Profiles Phone Column:",
-    profilesData.map((row) => row.phone)
-  );
+  // console.log("Profiles Data:", profilesData);
+  // // console.log("User Metadata:", session?.user?.user_metadata);
+  // console.log(
+  //   "Profiles Phone Column:",
+  //   profilesData.map((row) => row.phone)
+  // );
+
+  const formatTime = (time) => {
+    const date = new Date(time);
+    return new Intl.DateTimeFormat("en-US", {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(date);
+  };
 
   return (
     <>
-      {console.log(profilesData)}
+      {/* {console.log(profilesData)} */}
       <div className="all-tables-master-container">
         <div className="all-tables-container">
+          <h2>
+            Pick a Username from the table Below. Or SignUp Here{" "}
+            <button>
+              <Link to="/account"> Click here</Link>
+            </button>
+          </h2>
+          <h3>
+            Password for all the user1,2,3,4@example.com accounts is:
+            "dummy_password"
+          </h3>
           <h2>Profiles:</h2>
           {/* <Table columns={profilesColumns} data={profilesData} /> */}
           <Table
             columns={profilesColumns}
-            data={profilesData.map((row) => ({
+            data={profilesData.map(
+              (row) => ({
+                ...row,
+                full_name: row.full_name || "Default Name",
+                email: row.email || "Unavailable",
+                phone: row.phone || "N/A",
+                created_at: formatTime(row.created_at) || "N/A",
+              })
+              // console.log(row)
+            )}
+          />
+          {/* <h2>Users:</h2>
+          <Table
+            columns={usersColumns}
+            data={usersData.map((row) => ({
               ...row,
-              full_name: row.full_name || "Default Name",
-              email: row.email || "Unavailable",
-              phone: row.phone || "N/A",
+              created_at: formatTime(row.created_at) || "N/A",
+            }))}
+          /> */}
+          <h2>Questions:</h2>
+          <Table
+            columns={questionsColumns}
+            data={questionsData.map((row) => ({
+              ...row,
+              created_at: formatTime(row.created_at) || "N/A",
             }))}
           />
-          <h2>Users:</h2>
-          <Table columns={usersColumns} data={usersData} />
-          <h2>Questions:</h2>
-          <Table columns={questionsColumns} data={questionsData} />
           <h2>Answers:</h2>
-          <Table columns={answersColumns} data={answersData} />
+          <Table
+            columns={answersColumns}
+            data={answersData.map((row) => ({
+              ...row,
+              created_at: formatTime(row.created_at) || "N/A",
+            }))}
+          />
         </div>
       </div>
     </>

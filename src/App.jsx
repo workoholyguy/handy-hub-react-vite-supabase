@@ -62,10 +62,10 @@ function App() {
         localization={{
           variables: {
             sign_in: {
-              email_label: 'Login: Use "admin@example.com" as login',
-              password_label: 'Password: Use "admin" as pass',
-              email_input_placeholder: 'Use "admin@example.com" as login',
-              password_input_placeholder: 'Use "admin" as pass',
+              email_label: 'Login: Use as login \n"admin@example.com"',
+              password_label: 'Password: Use as pass: \n"admin"',
+              email_input_placeholder: '"admin@example.com"',
+              password_input_placeholder: '"admin"',
             },
             sign_up: {
               email_input_placeholder: "Enter your email address",
@@ -89,7 +89,7 @@ function App() {
     },
     {
       path: "/tables",
-      element: requireAuth(AllTables),
+      element: <AllTables />,
     },
     {
       path: "/feed",
@@ -114,7 +114,10 @@ function App() {
       <div className="side-nav">
         <Link to="/account">Account</Link>
         <Link to="/">Home</Link>
-        <Link to="/tables">View All Current Tables!</Link>
+        <Link to="/tables">
+          View All Current Tables! <br />
+          (Pick a Username Here)
+        </Link>
         <Link to="/feed">Feed</Link>
         <Link to="/new-question">New Question</Link>
       </div>

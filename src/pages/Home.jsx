@@ -8,6 +8,11 @@ function Home() {
     <div className="home-master-container">
       <header className="home-header">
         <h1>Welcome to HandyHub!</h1>
+        <h3>
+          <button>
+            <Link to="/account">Login/Sign Up Here</Link>
+          </button>{" "}
+        </h3>
         <p className="intro-text">
           HandyHub is the ultimate platform for DIY enthusiasts and professional
           handymen. Whether you're tackling a project or seeking expert advice,

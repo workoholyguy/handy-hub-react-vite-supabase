@@ -117,7 +117,8 @@ const Account = ({ session }) => {
   return (
     <div className="account-container">
       <h1>
-        Welcome,{" "}
+        Welcome,
+        <br />
         <span>
           {session?.user?.user_metadata.full_name ||
             "User, we don't have your name"}
