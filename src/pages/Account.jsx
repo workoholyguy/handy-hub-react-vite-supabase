@@ -107,7 +107,7 @@ const Account = ({ session }) => {
         </span>
       </h2>
       <h2>
-        We have your phone number as:
+        We have your phone number as: <br />
         <span className="user-data">
           {session?.user?.user_metadata.phone
             ? formatPhoneNumber(session?.user?.user_metadata.phone)
@@ -115,13 +115,13 @@ const Account = ({ session }) => {
         </span>
       </h2>
       <h2>
-        Account Updated at:{" "}
+        Account Updated at: <br />
         <span className="user-data">
           {formatTime(session?.user?.updated_at)}
         </span>
       </h2>
       <h2>
-        Account Created at:{" "}
+        Account Created at: <br />
         <span className="user-data">
           {formatTime(session?.user?.created_at)}
         </span>
