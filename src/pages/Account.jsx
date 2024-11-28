@@ -1,6 +1,5 @@
 // Account.jsx
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { format, compareAsc } from "date-fns";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +9,7 @@ import "./account.css";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import UpdateUserModal from "../components/UpdateUserModal";
+import Postcard from "../components/Postcard";
 
 const Account = ({ session }) => {
   const [showModal, setShowModal] = useState(false); // Modal visibility state
@@ -20,6 +20,8 @@ const Account = ({ session }) => {
   );
   const [error, setError] = useState(""); // Error message state
   const [successMessage, setSuccessMessage] = useState(""); // Success message state
+  const [userPosts, setUserPosts] = useState([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
   const navigate = useNavigate();
 
   const formatTime = function (time) {
@@ -45,6 +47,17 @@ const Account = ({ session }) => {
     };
 
     getUserData(session);
+
+    const fetchUserPosts = async () => {
+      setLoadingPosts(true);
+      try {
+        // Fetch posts created by the logged-in user
+      } catch (error) {
+        console.error("Error fetching user posts:", error);
+      } finally {
+        setLoadingPosts(false);
+      }
+    };
   }, []);
 
   const handleSignOut = async () => {

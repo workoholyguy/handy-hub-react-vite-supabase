@@ -1,0 +1,65 @@
+[
+    {
+      "id": "9e9f9591-341d-440c-afb1-0a5550fdb1dd",
+      "title": "Replacing siding on my house",
+      "description": "What’s the best type of siding for durability and weather resistance?",
+      "image_url": "https://plus.unsplash.com/premium_photo-1682617327714-f5b282971d2e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "b9c1791f-7f46-439d-a8e6-c8bb27a6745a",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 1
+    },
+    {
+      "id": "d616c7dc-d62f-4767-ab18-f9ff8f2862d6",
+      "title": "How to install a hardwood floor?",
+      "description": "I want to install a hardwood floor in my living room. Any tips or recommended tools?",
+      "image_url": "https://plus.unsplash.com/premium_photo-1682928136543-22bfb511f3c0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "bcb12489-9986-4ad6-a9b3-9fb503eb16d5",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 5
+    },
+    {
+      "id": "db664ba5-42d0-4705-a164-820d134733cb",
+      "title": "Installing smart home devices",
+      "description": "I’m interested in smart thermostats and lights. Any recommendations for brands or setup tips?",
+      "image_url": "https://images.unsplash.com/photo-1587052694737-a972e4186288?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "c663f89c-c626-4daf-8463-c2c7543ef8ec",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 0
+    },
+    {
+      "id": "e8d79dc4-c885-40fa-a249-c0c8d190660f",
+      "title": "Fixing a leaky faucet",
+      "description": "My kitchen faucet is leaking from the base. How can I fix this?",
+      "image_url": "https://images.unsplash.com/photo-1609280070598-e1770c80b75c?q=80&w=1796&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "9b253247-9e66-4725-abdf-b579ae177806",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 6
+    },
+    {
+      "id": "3ae3110b-85b0-4214-a3d6-a3a3bb648726",
+      "title": "Repairing drywall holes",
+      "description": "What’s the best method for repairing small to medium-sized holes in drywall?",
+      "image_url": "https://plus.unsplash.com/premium_photo-1682597000277-6dbb1e6002c0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "5b48f7e3-2135-4d2e-b375-976fdb1d39ef",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 3
+    },
+    {
+      "id": "d502cb79-10b7-4dbf-98ee-0d23c7d28c23",
+      "title": "How to tile a bathroom floor?",
+      "description": "Looking for advice on tiling my bathroom floor. Any tips on laying tiles evenly?",
+      "image_url": "https://images.unsplash.com/photo-1682888813789-c39fe30921e2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "bcb12489-9986-4ad6-a9b3-9fb503eb16d5",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 4
+    },
+    {
+      "id": "3b1da29a-1796-464b-ba89-3ea970b2aebf",
+      "title": "Recommendations for garage door insulation",
+      "description": "I want to insulate my garage door to keep it warmer. What materials should I use?",
+      "image_url": "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "user_id": "9b253247-9e66-4725-abdf-b579ae177806",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "upvotes": 5
+    }
+  ]

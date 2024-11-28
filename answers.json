@@ -1,0 +1,92 @@
+[
+    {
+      "id": "4cd27070-514a-41c2-b3b9-908326e4b28a",
+      "question_id": "db664ba5-42d0-4705-a164-820d134733cb",
+      "user_id": "9b253247-9e66-4725-abdf-b579ae177806",
+      "content": "I recommend the Nest thermostat and Philips Hue lights. Make sure your Wi-Fi signal is strong in all areas.",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "is_accepted": false,
+      "upvotes": 0
+    },
+    {
+      "id": "dedc3f14-2084-4f45-866a-ac5a1201a2bf",
+      "question_id": "d616c7dc-d62f-4767-ab18-f9ff8f2862d6",
+      "user_id": "b9c1791f-7f46-439d-a8e6-c8bb27a6745a",
+      "content": "Consider engineered hardwood for better durability and easier installation.",
+      "created_at": "2024-11-18 22:51:30.704674+00",
+      "is_accepted": false,
+      "upvotes": 0
+    },
+    {
+      "id": "3dc579f9-b0bd-4e3a-aa9f-655cb683b2a7",
+      "question_id": "d616c7dc-d62f-4767-ab18-f9ff8f2862d6",
+      "user_id": "c663f89c-c626-4daf-8463-c2c7543ef8ec",
+      "content": "Prep the subfloor by cleaning and leveling it before installation.",
+      "created_at": "2024-11-18 22:51:30.704674+00",
+      "is_accepted": false,
+      "upvotes": 0
+    },
+    {
+      "id": "2d24eee1-13e5-4d95-b228-d68681a5b191",
+      "question_id": "3ae3110b-85b0-4214-a3d6-a3a3bb648726",
+      "user_id": "c663f89c-c626-4daf-8463-c2c7543ef8ec",
+      "content": "For small holes, use spackle and a putty knife. For larger holes, you may need to use a drywall patch kit.",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "is_accepted": false,
+      "upvotes": 4
+    },
+    {
+      "id": "19fe41e2-ef63-4aab-923f-bbd45bae4463",
+      "question_id": "e8d79dc4-c885-40fa-a249-c0c8d190660f",
+      "user_id": "bcb12489-9986-4ad6-a9b3-9fb503eb16d5",
+      "content": "You might need to replace the washer or valve cartridge.",
+      "created_at": "2024-11-18 22:51:30.704674+00",
+      "is_accepted": false,
+      "upvotes": 5
+    },
+    {
+      "id": "51d2f8c3-6429-49bf-807d-5108b12ed07f",
+      "question_id": "3b1da29a-1796-464b-ba89-3ea970b2aebf",
+      "user_id": "b9c1791f-7f46-439d-a8e6-c8bb27a6745a",
+      "content": "Foam board insulation is effective and easy to cut to size. Reflective insulation can also help.",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "is_accepted": false,
+      "upvotes": 4
+    },
+    {
+      "id": "87701003-a763-4808-866c-cdc623165754",
+      "question_id": "e8d79dc4-c885-40fa-a249-c0c8d190660f",
+      "user_id": "b9c1791f-7f46-439d-a8e6-c8bb27a6745a",
+      "content": "You might need to replace the O-ring or cartridge inside the faucet. Turn off the water supply before starting.",
+      "created_at": "2024-11-17 22:26:40.181897+00",
+      "is_accepted": false,
+      "upvotes": 5
+    },
+    {
+      "id": "f67564d2-1bc5-4c4f-a178-4e2a862f5f99",
+      "question_id": "e8d79dc4-c885-40fa-a249-c0c8d190660f",
+      "user_id": "b9c1791f-7f46-439d-a8e6-c8bb27a6745a",
+      "content": "Tighten the faucet base and connections to stop leaks.",
+      "created_at": "2024-11-18 22:51:30.704674+00",
+      "is_accepted": false,
+      "upvotes": 4
+    },
+    {
+      "id": "739d65ea-31be-43f8-92ca-cf13e4f209c1",
+      "question_id": "d616c7dc-d62f-4767-ab18-f9ff8f2862d6",
+      "user_id": "bcb12489-9986-4ad6-a9b3-9fb503eb16d5",
+      "content": "this is an answer for How to install a hardwood floor?",
+      "created_at": "2024-11-19 06:14:00.674+00",
+      "is_accepted": false,
+      "upvotes": 0
+    },
+    {
+      "id": "478820e4-9c83-4637-a11c-6a8a6f03eb0a",
+      "question_id": "9e9f9591-341d-440c-afb1-0a5550fdb1dd",
+      "user_id": "b9c1791f-7f46-439d-a8e6-c8bb27a6745a",
+      "content": "TEST ANSWER",
+      "created_at": "2024-11-26 15:23:20.495+00",
+      "is_accepted": false,
+      "upvotes": 6
+    }
+  ]

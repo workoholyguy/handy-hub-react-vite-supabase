@@ -46,7 +46,8 @@ function AllTables() {
 
   const questionsColumns = [
     { key: "id", label: "Question ID" },
-    { key: "user_id", label: "User ID" },
+    { key: "user_email", label: "User Email" },
+    // { key: "user_id", label: "User ID" },
     { key: "title", label: "Title" },
     { key: "description", label: "Description" },
     { key: "image_url", label: "Image URL" },
@@ -57,7 +58,9 @@ function AllTables() {
   const answersColumns = [
     { key: "id", label: "Answer ID" },
     { key: "question_id", label: "Question ID" },
-    { key: "user_id", label: "User ID" },
+    // { key: "user_id", label: "User ID" },
+    { key: "user_email", label: "User Email" },
+    // { key: "user_id", label: "User ID" },
     { key: "content", label: "Content" },
     { key: "created_at", label: "Created At" },
     { key: "is_accepted", label: "Is Accepted" },
