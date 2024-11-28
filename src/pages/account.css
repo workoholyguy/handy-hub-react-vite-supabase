@@ -34,3 +34,8 @@ form {
   border: solid white 2px;
   padding: 0.5%;
 }
+
+.q_and_a_container {
+  display: flex;
+  flex-direction: row;
+}

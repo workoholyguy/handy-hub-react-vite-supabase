@@ -100,6 +100,7 @@ const AnswerPage = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  console.log(answers);
   return (
     <div className="answer-page-container">
       <h1>Answers for: {question.title}</h1>
@@ -121,12 +122,12 @@ const AnswerPage = () => {
                   Upvote
                 </button>
               </p>
-              <button
+              {/* <button
                 className="btn-logout"
                 onClick={() => handleDeleteAnswer(answer.id)}
               >
                 Delete
-              </button>
+              </button> */}
             </div>
           ))
         ) : (

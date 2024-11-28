@@ -2,7 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./card-style.css";
 
-function Postcard({ id, time, title, description, url, upvotes, onUpvote }) {
+function Postcard({
+  id,
+  time,
+  title,
+  description,
+  url,
+  upvotes,
+  onUpvote,
+  with_upvote, // Default value set here
+}) {
   const formatTime = (time) => {
     const date = new Date(time);
     return new Intl.DateTimeFormat("en-US", {
@@ -32,14 +41,22 @@ function Postcard({ id, time, title, description, url, upvotes, onUpvote }) {
       <p>
         <strong>Upvotes </strong>: {upvotes}
       </p>
-      <button
-        className="upvote-btn"
-        onClick={() => onUpvote(id, upvotes)} // Call the upvote handler
-      >
-        Upvote
-      </button>
+      {with_upvote ? (
+        <button
+          className="upvote-btn"
+          onClick={() => onUpvote(id, upvotes)} // Call the upvote handler
+        >
+          Upvote
+        </button>
+      ) : (
+        <div className="hidden"></div>
+      )}
     </div>
   );
 }
+
+// Postcard.defaultProps = {
+//   with_upvote: true,
+// };
 
 export default Postcard;

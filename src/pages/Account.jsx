@@ -10,6 +10,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import UpdateUserModal from "../components/UpdateUserModal";
 import Postcard from "../components/Postcard";
+import Answer from "../components/Answer";
 
 const Account = ({ session }) => {
   const [showModal, setShowModal] = useState(false); // Modal visibility state
@@ -22,6 +23,8 @@ const Account = ({ session }) => {
   const [successMessage, setSuccessMessage] = useState(""); // Success message state
   const [userPosts, setUserPosts] = useState([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [loadingAnswers, setLoadingAnswers] = useState(true);
   const navigate = useNavigate();
 
   const formatTime = function (time) {
@@ -33,12 +36,13 @@ const Account = ({ session }) => {
   };
 
   useEffect(() => {
+    // Fetch User General Info
     const getUserData = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
 
-      console.log(user);
+      // console.log(user);
       // console.log(user.user_metadata.full_name);
       // console.log();
       // console.log("Been Verified: ", user.user_metadata.email_verified);
@@ -48,17 +52,48 @@ const Account = ({ session }) => {
 
     getUserData(session);
 
+    // Fetch USer Questions
     const fetchUserPosts = async () => {
       setLoadingPosts(true);
       try {
         // Fetch posts created by the logged-in user
+        const { data, error } = await supabase
+          .from("questions")
+          .select("*")
+          .eq("user_id", session?.user?.id);
+
+        if (error) throw error;
+
+        setUserPosts(data || []);
+        // console.log("Questions Data: ", data);
       } catch (error) {
         console.error("Error fetching user posts:", error);
       } finally {
         setLoadingPosts(false);
       }
     };
-  }, []);
+
+    fetchUserPosts();
+
+    // Fetch User Answers:
+    const fetchUserAnswers = async () => {
+      setLoadingAnswers(true);
+      try {
+        const { data, error } = await supabase
+          .from("answers")
+          .select("*")
+          .eq("user_id", session?.user?.id);
+
+        if (error) throw error;
+        setUserAnswers(data || []);
+      } catch (error) {
+        console.error("Error fetching user Answers:", error);
+      } finally {
+        setLoadingAnswers(false);
+      }
+    };
+    fetchUserAnswers();
+  }, [session]);
 
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -71,7 +106,7 @@ const Account = ({ session }) => {
   };
 
   const handleUpdateUserInfo = async ({ email, fullName, phone }) => {
-    console.log("Update Button Pressed");
+    // console.log("Update Button Pressed");
     const formatedPhone = formatPhoneNumber(phone);
     try {
       // Update the Auth user
@@ -125,63 +160,174 @@ const Account = ({ session }) => {
     return `(${areaCode}) ${middle}-${lastFour}`;
   };
 
-  console.log("User Metadata:", session?.user?.user_metadata);
+  const handleDeleteQuestion = async (questionId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this question? This action cannot be undone."
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const { error } = await supabase
+        .from("questions")
+        .delete()
+        .eq("id", questionId);
+
+      if (error) throw error;
+
+      // Remove the question from local state
+      setUserPosts(userPosts.filter((q) => q.id !== questionId));
+      alert("Question deleted successfully.");
+    } catch (err) {
+      console.error("Error deleting question:", err);
+      alert("Failed to delete question. Please try again.");
+    }
+  };
+
+  const handleDeleteAnswer = async (answerId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this answer? This action cannot be undone."
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const { error } = await supabase
+        .from("answers")
+        .delete()
+        .eq("id", answerId);
+
+      if (error) throw error;
+
+      // Remove the answer from local state
+      setUserAnswers(userAnswers.filter((answer) => answer.id !== answerId));
+      alert("Answer deleted successfully.");
+    } catch (err) {
+      console.error("Error deleting answer:", err);
+      alert("Failed to delete answer. Please try again.");
+    }
+  };
+
+  // console.log("User Metadata:", session?.user?.user_metadata);
+  console.log("User Posts:", userPosts);
+  console.log("User Answer:", userAnswers);
 
   return (
-    <div className="account-container">
-      <h1>
-        Welcome,
-        <br />
-        <span>
-          {session?.user?.user_metadata.full_name ||
-            "User, we don't have your name"}
-        </span>
-        !
-      </h1>
-      {/* <h1>Welcome, {session?.user?.email || "User"}!</h1> */}
-      <h2>
-        We have your email as: <br />
-        <span className="user-data">
-          {session?.user?.email || "Unavailable"}
-        </span>
-      </h2>
-      <h2>
-        We have your phone number as: <br />
-        <span className="user-data">
-          {session?.user?.user_metadata?.formatedPhone
-            ? session?.user?.user_metadata?.formatedPhone
-            : "Unavailable"}
-        </span>
-      </h2>
-      <h2>
-        Account Updated at: <br />
-        <span className="user-data">
-          {formatTime(session?.user?.updated_at)}
-        </span>
-      </h2>
-      <h2>
-        Account Created at: <br />
-        <span className="user-data">
-          {formatTime(session?.user?.created_at)}
-        </span>
-      </h2>
-      <h3>Manage your account details below:</h3>
-      <div className="button-container">
-        <button onClick={() => setShowModal(true)} className="btn-update">
-          Update Personal Info
-        </button>
-        <button onClick={handleSignOut} className="btn-logout">
-          Sign Out
-        </button>
+    <>
+      <div className="account-container">
+        <div className="general-details">
+          <h1>
+            Welcome,
+            <br />
+            <span>
+              {session?.user?.user_metadata.full_name ||
+                "User, we don't have your name"}
+            </span>
+            !
+          </h1>
+          {/* <h1>Welcome, {session?.user?.email || "User"}!</h1> */}
+          <h2>
+            We have your email as: <br />
+            <span className="user-data">
+              {session?.user?.email || "Unavailable"}
+            </span>
+          </h2>
+          <h2>
+            We have your phone number as: <br />
+            <span className="user-data">
+              {session?.user?.user_metadata?.formatedPhone
+                ? session?.user?.user_metadata?.formatedPhone
+                : "Unavailable"}
+            </span>
+          </h2>
+          <h2>
+            Account Updated at: <br />
+            <span className="user-data">
+              {formatTime(session?.user?.updated_at)}
+            </span>
+          </h2>
+          <h2>
+            Account Created at: <br />
+            <span className="user-data">
+              {formatTime(session?.user?.created_at)}
+            </span>
+          </h2>
+          <h3>Manage your account details below:</h3>
+          <div className="button-container">
+            <button onClick={() => setShowModal(true)} className="btn-update">
+              Update Personal Info
+            </button>
+            <button onClick={handleSignOut} className="btn-logout">
+              Sign Out
+            </button>
+          </div>
+          {showModal && (
+            <UpdateUserModal
+              user={session?.user}
+              onClose={() => setShowModal(false)}
+              onUpdate={handleUpdateUserInfo}
+            />
+          )}
+        </div>
+        <div className="q_and_a_container">
+          {loadingPosts ? (
+            <p>Loading Posts...</p>
+          ) : userPosts.length > 0 ? (
+            <div className="user-posts-container">
+              <h2>Questions:</h2>
+              {userPosts.map((post, index) => (
+                <div key={index} className="post-container">
+                  <Postcard
+                    key={post.id}
+                    id={post.id}
+                    title={post.title}
+                    description={post.description}
+                    upvotes={post.upvotes}
+                    url={post.image_url}
+                    time={post.created_at}
+                  />
+                  <button
+                    className="delete-btn btn-logout"
+                    onClick={() => handleDeleteQuestion(post.id)}
+                  >
+                    Delete Question
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>You Haven't Poseted Anything</p>
+          )}
+          {loadingAnswers ? (
+            <p>Loading Answers...</p>
+          ) : userAnswers.length > 0 ? (
+            <div className="answer-posts-container">
+              <h2>Answers:</h2>
+              {userAnswers.map((answer) => (
+                <div key={answer.id} className="answer-card">
+                  <Answer
+                    key={answer.id}
+                    answerId={answer.id}
+                    accepted={answer.is_accepted}
+                    name={session?.user?.user_metadata.full_name || "Unknown"}
+                    upvotes={answer.upvotes}
+                    content={answer.content}
+                    created_at={answer.created_at}
+                    with_upvote={false}
+                  />
+                  <button
+                    className="btn-logout"
+                    onClick={() => handleDeleteAnswer(answer.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>You Haven&apos;t Answered Any Questions Yet</p>
+          )}
+        </div>
       </div>
-      {showModal && (
-        <UpdateUserModal
-          user={session?.user}
-          onClose={() => setShowModal(false)}
-          onUpdate={handleUpdateUserInfo}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

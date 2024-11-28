@@ -113,13 +113,14 @@ const Feed = () => {
                 url={question.image_url || null}
                 upvotes={question.upvotes}
                 onUpvote={handleUpvote} // Pass handleUpvote as a prop
+                with_upvote={true}
               />
-              <button
+              {/* <button
                 className="delete-btn btn-logout"
                 onClick={() => handleDeleteQuestion(question.id)}
               >
                 Delete Question
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
