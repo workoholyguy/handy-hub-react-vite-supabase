@@ -81,7 +81,7 @@ const Account = ({ session }) => {
       try {
         const { data, error } = await supabase
           .from("answers")
-          .select("*")
+          .select("*, profiles(full_name, email)") // Join profiles table to fetch full_name
           .eq("user_id", session?.user?.id);
 
         if (error) throw error;
@@ -307,8 +307,8 @@ const Account = ({ session }) => {
                   <Answer
                     key={answer.id}
                     answerId={answer.id}
-                    name={session?.user?.user_metadata.full_name || "Unknown"}
-                    author={answer.user_email}
+                    name={answer.profiles?.full_name || "Unknown"}
+                    author={answer.profiles?.email}
                     // upvotes={answer.upvotes}
                     content={answer.content}
                     created_at={answer.created_at}
