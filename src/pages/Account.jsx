@@ -283,6 +283,7 @@ const Account = ({ session }) => {
                     upvotes={post.upvotes}
                     url={post.image_url}
                     time={post.created_at}
+                    author={post.user_email}
                   />
                   <button
                     className="delete-btn btn-logout"

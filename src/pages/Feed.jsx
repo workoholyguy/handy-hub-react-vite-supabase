@@ -200,6 +200,7 @@ const Feed = ({ session }) => {
                 url={question.image_url || null}
                 upvotes={question.upvotes}
                 onUpvote={session ? handleUpvote : null} // Only allow upvoting for logged-in users
+                author={question.user_email}
                 with_upvote={true}
                 has_voted={!!votedQuestions[question.id]}
               />

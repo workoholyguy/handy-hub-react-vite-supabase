@@ -4,7 +4,7 @@ import { supabase } from "../client";
 import Answer from "../components/Answer";
 import { Link } from "react-router-dom";
 
-const AnswerPage = () => {
+const AnswerPage = ({ session }) => {
   const { id: param_id } = useParams(); // Get question ID from URL params
   const [question, setQuestion] = useState(null); // Store question details
   const [answers, setAnswers] = useState([]); // Store answers with author info
@@ -49,13 +49,16 @@ const AnswerPage = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  console.log(answers);
+  // console.log(answers);
+  // console.log(session.user.id);
+  console.log(question);
   return (
     <div className="answer-page-container">
       <h1>Answers for: {question?.title}</h1>
-      <p>{question?.description}</p>
+      <h3>{question?.description}</h3>
+      <p>Author: {question.user_email}</p>
       <div className="submit-answer-container">
-        <Link to={`/new-answer/${param_id}/${question.user_id}`}>
+        <Link to={`/new-answer/${param_id}/${session.user.id}`}>
           <button className="submit-answer-btn">Submit Your Answer</button>
         </Link>
       </div>

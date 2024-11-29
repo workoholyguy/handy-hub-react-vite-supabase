@@ -7,7 +7,7 @@ import { format, compareAsc } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import "../styles/NewQuestion.css";
 
-const NewQuestion = () => {
+const NewQuestion = ({ session }) => {
   const navigate = useNavigate();
   const [question, setQuestion] = useState({
     title: "",
@@ -20,29 +20,27 @@ const NewQuestion = () => {
   const [userId, setUserId] = useState(null);
 
   // Fetch Alice's user ID when the component mounts
-  useEffect(() => {
-    const fetchUserId = async () => {
-      const { data, error } = await supabase
-        .from("users")
-        .select("id")
-        .eq("username", "alice")
-        .single();
-
-      if (error) {
-        console.error("Error fetching user ID:", error);
-      } else if (data) {
-        setUserId(data.id);
-      }
-    };
-
-    fetchUserId();
-  }, []);
+  // useEffect(() => {
+  //   // const fetchUserId = async () => {
+  //   //   const { data, error } = await supabase
+  //   //     .from("profiles")
+  //   //     .select("id")
+  //   //     .eq("user_id", session.user.id)
+  //   //     .single();
+  //   //   if (error) {
+  //   //     console.error("Error fetching user ID:", error);
+  //   //   } else if (data) {
+  //   //     setUserId(data.id);
+  //   //   }
+  //   // };
+  //   // fetchUserId();
+  // }, []);
 
   const createQuestion = async (event) => {
     event.preventDefault();
 
     // Check if userId is available
-    if (!userId) {
+    if (!session.user.id) {
       alert("User ID not available.");
       return;
     }
@@ -61,7 +59,8 @@ const NewQuestion = () => {
       .from("questions")
       .insert([
         {
-          user_id: userId, // Use Alice's user ID
+          user_id: session.user.id, //
+          // user_email: session.user.email, //
           title: question.title,
           description: question.description,
           image_url: question.image_url,
