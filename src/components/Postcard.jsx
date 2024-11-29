@@ -12,6 +12,7 @@ function Postcard({
   onUpvote,
   with_upvote, // Default value set here
   has_voted,
+  author,
 }) {
   const formatTime = (time) => {
     const date = new Date(time);
@@ -63,6 +64,7 @@ function Postcard({
       ) : (
         <div className="hidden"></div>
       )}
+      <p>Author: {author}</p>
     </div>
   );
 }

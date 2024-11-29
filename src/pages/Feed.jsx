@@ -78,7 +78,7 @@ const Feed = ({ session }) => {
   };
 
   // Get the current date and time
-  const currentDateTime = new Date();
+  // const currentDateTime = new Date();
   // Check if the user has already upvoted this question
   const handleUpvote = async (questionId, currentUpvotes) => {
     try {
@@ -166,6 +166,7 @@ const Feed = ({ session }) => {
     }
   };
 
+  console.log(questionsData);
   return (
     <div>
       <div className="feed-master-container">

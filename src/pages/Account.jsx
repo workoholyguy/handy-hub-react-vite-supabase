@@ -306,12 +306,12 @@ const Account = ({ session }) => {
                   <Answer
                     key={answer.id}
                     answerId={answer.id}
-                    accepted={answer.is_accepted}
                     name={session?.user?.user_metadata.full_name || "Unknown"}
-                    upvotes={answer.upvotes}
+                    author={answer.user_email}
+                    // upvotes={answer.upvotes}
                     content={answer.content}
                     created_at={answer.created_at}
-                    with_upvote={false}
+                    accepted={answer.is_accepted}
                   />
                   <button
                     className="btn-logout"

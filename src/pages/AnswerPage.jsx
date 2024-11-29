@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { supabase } from "../client";
-import "./answer-page.css";
+import Answer from "../components/Answer";
+import { Link } from "react-router-dom";
 
 const AnswerPage = () => {
-  const { id: param_id } = useParams();
+  const { id: param_id } = useParams(); // Get question ID from URL params
   const [question, setQuestion] = useState(null); // Store question details
-  const [answers, setAnswers] = useState([]); // Store list of answers
-  const [loading, setLoading] = useState(true); // Handle loading state
-  const [error, setError] = useState(null); // Handle errors
+  const [answers, setAnswers] = useState([]); // Store answers with author info
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
     const fetchQuestionAndAnswers = async () => {
       try {
         setLoading(true);
 
-        // Fetch question
+        // Fetch the question
         const { data: questionData, error: questionError } = await supabase
           .from("questions")
           .select("*")
@@ -23,21 +24,17 @@ const AnswerPage = () => {
           .single();
 
         if (questionError) throw questionError;
-
         setQuestion(questionData);
 
-        // Fetch answers
+        // Fetch answers with author info (LEFT JOIN equivalent)
         const { data: answersData, error: answersError } = await supabase
           .from("answers")
-          .select("*")
+          .select("*, profiles(full_name, email)") // Join profiles table to fetch full_name
           .eq("question_id", param_id)
           .order("upvotes", { ascending: false });
 
         if (answersError) throw answersError;
-
-        setAnswers(answersData);
-        console.log(answersData);
-        // setAnswerUpvotes
+        setAnswers(answersData); // Store answers with author info
       } catch (err) {
         console.error("Error fetching data:", err);
         setError("Failed to load data. Please try again later.");
@@ -49,86 +46,32 @@ const AnswerPage = () => {
     fetchQuestionAndAnswers();
   }, [param_id]);
 
-  const handleDeleteAnswer = async (answerId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this answer? This action cannot be undone."
-    );
-    if (!confirmDelete) return;
-
-    try {
-      const { error } = await supabase
-        .from("answers")
-        .delete()
-        .eq("id", answerId);
-
-      if (error) throw error;
-
-      // Remove the answer from local state
-      setAnswers(answers.filter((answer) => answer.id !== answerId));
-      alert("Answer deleted successfully.");
-    } catch (err) {
-      console.error("Error deleting answer:", err);
-      alert("Failed to delete answer. Please try again.");
-    }
-  };
-  const handleUpvoteAnswer = async (answerId, currentUpvotes) => {
-    try {
-      const { error } = await supabase
-        .from("answers")
-        .update({ upvotes: currentUpvotes + 1 }) //// Increment upvotes in Supabase
-        .eq("id", answerId);
-
-      if (error) throw error;
-
-      // Remove the answer from local state
-      // console.log(answers);
-      setAnswers((prevAnswers) =>
-        prevAnswers.map((answer) =>
-          answer.id === answerId
-            ? { ...answer, upvotes: answer.upvotes + 1 }
-            : answer
-        )
-      );
-
-      // alert("Answer deleted successfully.");
-    } catch (err) {
-      console.error("Error Upvoting answer:", err);
-      alert("Failed to Upvote. Please try again.");
-    }
-  };
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   console.log(answers);
   return (
     <div className="answer-page-container">
-      <h1>Answers for: {question.title}</h1>
-      <p>{question.description}</p>
-      <Link to={`/new-answer/${param_id}/${question.user_id}`}>
-        Submit Your Answer
-      </Link>
+      <h1>Answers for: {question?.title}</h1>
+      <p>{question?.description}</p>
+      <div className="submit-answer-container">
+        <Link to={`/new-answer/${param_id}/${question.user_id}`}>
+          <button className="submit-answer-btn">Submit Your Answer</button>
+        </Link>
+      </div>
+
       <div className="answers-section">
         {answers.length > 0 ? (
           answers.map((answer) => (
-            <div key={answer.id} className="answer-card">
-              <p>{answer.content}</p>
-              <p>
-                Upvotes: {answer.upvotes} <br />
-                <button
-                  className="upvote-btn"
-                  onClick={() => handleUpvoteAnswer(answer.id, answer.upvotes)} // Call the upvote handler
-                >
-                  Upvote
-                </button>
-              </p>
-              {/* <button
-                className="btn-logout"
-                onClick={() => handleDeleteAnswer(answer.id)}
-              >
-                Delete
-              </button> */}
-            </div>
+            <Answer
+              key={answer.id}
+              answerId={answer.id}
+              name={answer.profiles?.full_name || "Unknown User"} // Use joined full_name
+              author={answer.profiles?.email || "Unknown User"} // Use joined full_name
+              content={answer.content}
+              created_at={answer.created_at}
+              accepted={answer.is_accepted}
+            />
           ))
         ) : (
           <p>No answers yet. Be the first to answer!</p>
