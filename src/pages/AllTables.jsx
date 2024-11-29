@@ -10,9 +10,10 @@ import { Link, useParams } from "react-router-dom";
 function AllTables() {
   // State variables for storing data for each table from the database.
   const [profilesData, setProfilesData] = useState([]);
-  const [usersData, setUsersData] = useState([]);
+  // const [usersData, setUsersData] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
   const [answersData, setAnswersData] = useState([]);
+  const [questionUpvotesData, setQuestionUpvotesData] = useState([]);
 
   useEffect(() => {
     // Function to fetch data from Supabase for each table and set it in the corresponding state variable.
@@ -25,9 +26,10 @@ function AllTables() {
 
       // Fetch data for each table
       fetchTableData("profiles", setProfilesData);
-      fetchTableData("users", setUsersData);
+      // fetchTableData("users", setUsersData);
       fetchTableData("questions", setQuestionsData);
       fetchTableData("answers", setAnswersData);
+      fetchTableData("question_votes", setQuestionUpvotesData);
     };
 
     // Calls fetchData when the component mounts
@@ -36,13 +38,13 @@ function AllTables() {
 
   // Column definitions for each table, specifying the keys to display.
 
-  const usersColumns = [
-    { key: "id", label: "User ID" },
-    { key: "username", label: "Username" },
-    { key: "email", label: "Email" },
-    { key: "balance", label: "Balance" },
-    { key: "created_at", label: "Created At" },
-  ];
+  // const usersColumns = [
+  //   { key: "id", label: "User ID" },
+  //   { key: "username", label: "Username" },
+  //   { key: "email", label: "Email" },
+  //   { key: "balance", label: "Balance" },
+  //   { key: "created_at", label: "Created At" },
+  // ];
 
   const questionsColumns = [
     { key: "id", label: "Question ID" },
@@ -73,6 +75,13 @@ function AllTables() {
     { key: "full_name", label: "Name" },
     { key: "email", label: "Email" },
     { key: "phone", label: "Phone" },
+    { key: "created_at", label: "Created At" },
+  ];
+
+  const questionUpvotesColumns = [
+    { key: "id", label: "Vote Id " },
+    { key: "user_id", label: "User Id " },
+    { key: "question_id", label: "Question Id " },
     { key: "created_at", label: "Created At" },
   ];
 
@@ -109,10 +118,9 @@ function AllTables() {
               <Link to="/account"> Click here</Link>
             </button>
           </h2>
-          <h3>
-            Password for all the user1,2,3,4@example.com accounts is:
-            "dummy_password"
-          </h3>
+          <h3>Use: 'admin@example.com' as a login</h3>
+          <h3>Use: 'admin' as a password</h3>
+          <h3>Or Create a New User.</h3>
           <h2>Profiles:</h2>
           {/* <Table columns={profilesColumns} data={profilesData} /> */}
           <Table
@@ -148,6 +156,14 @@ function AllTables() {
           <Table
             columns={answersColumns}
             data={answersData.map((row) => ({
+              ...row,
+              created_at: formatTime(row.created_at) || "N/A",
+            }))}
+          />
+          <h2>Question Upvotes:</h2>
+          <Table
+            columns={questionUpvotesColumns}
+            data={questionUpvotesData.map((row) => ({
               ...row,
               created_at: formatTime(row.created_at) || "N/A",
             }))}

@@ -11,6 +11,7 @@ function Postcard({
   upvotes,
   onUpvote,
   with_upvote, // Default value set here
+  has_voted,
 }) {
   const formatTime = (time) => {
     const date = new Date(time);
@@ -42,12 +43,23 @@ function Postcard({
         <strong>Upvotes </strong>: {upvotes}
       </p>
       {with_upvote ? (
-        <button
-          className="upvote-btn"
-          onClick={() => onUpvote(id, upvotes)} // Call the upvote handler
-        >
-          Upvote
-        </button>
+        <>
+          {has_voted ? (
+            <button
+              className="unvote-btn"
+              onClick={() => onUpvote(id, upvotes)} // Call the upvote handler
+            >
+              Unvote
+            </button>
+          ) : (
+            <button
+              className="upvote-btn"
+              onClick={() => onUpvote(id, upvotes)} // Call the upvote handler
+            >
+              Upvote
+            </button>
+          )}
+        </>
       ) : (
         <div className="hidden"></div>
       )}
