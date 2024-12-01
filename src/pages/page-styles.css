@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-left: 12%;
+  /* padding-left: 12%; */
 }
 
 a {
@@ -57,7 +57,7 @@ li {
 }
 
 button {
-  border: white solid 4px;
+  /* border: white solid 4px; */
 }
 
 .master-details-container {
@@ -138,7 +138,7 @@ button {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding-left: 0px;
+    /* padding-left: 0px; */
   }
   .main {
     padding: 0%;

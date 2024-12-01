@@ -1,45 +1,31 @@
-.home-master-container {
-  padding: 20px;
-  padding-left: 5%;
+.home-master-container img {
+  width: 100%; /* Ensures the image stretches the full width of the container */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Removes extra space below the image */
 }
 
-.home-header h1 {
-  font-size: 2.5rem;
-  color: #b5b5b5;
-  margin-bottom: 10px;
+.navbar-logo img {
+  width: 100%;
 }
 
-.home-header p {
-  font-size: 1.1rem;
-  color: #b5b5b5;
+.home-header {
+  text-align: center; /* Centers the text content */
+  /* padding: 20px; */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Optional: Adds a semi-transparent overlay for better readability */
 }
 
-.home-content {
-  margin-top: 20px;
+img.full-width-image {
+  width: 100%; /* Makes the image span the entire width */
+  height: auto; /* Maintains aspect ratio */
+  display: block;
+  margin: 0; /* Removes extra margin */
 }
 
-.about-section,
-.features-section,
-.how-it-works-section,
-.cta-section {
-  margin-bottom: 30px;
-}
-
-.features-section ul {
-  list-style: disc inside;
-  padding-left: 20px;
-}
-
-.how-it-works-section ol {
-  list-style: decimal inside;
-  padding-left: 20px;
-}
-
-.cta-section a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.cta-section a:hover {
-  text-decoration: underline;
+.header-image {
+  padding: 0;
 }

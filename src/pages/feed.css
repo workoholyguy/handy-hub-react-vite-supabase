@@ -66,3 +66,7 @@ button.unvote-btn:hover {
 button.upvote-btn:hover {
   background-color: #0c539f;
 }
+
+.feed-master-container {
+  padding-top: 10%;
+}

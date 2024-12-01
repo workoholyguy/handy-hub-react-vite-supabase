@@ -1,8 +1,10 @@
 /* App.css */
+@import url("https://fonts.googleapis.com/css2?family=Kumar+One&display=swap");
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -69,7 +71,7 @@
 }
 
 .side-nav > a {
-  border: lightblue solid 2px;
+  /* border: lightblue solid 2px; */
   margin: 3%;
 }
 
@@ -81,4 +83,54 @@
 
 .hidden {
   display: none;
+}
+
+/* Top Navigation Bar */
+.top-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: #000000;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-nav a {
+  color: rgb(0, 0, 0);
+  /* background-color: #ffe1c9; */
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0;
+  /* border: 2px solid lightblue; */
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+.top-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-nav a img {
+  width: 70%;
+}
+.top-nav button {
+  font-family: "Kumar One", cursive;
+  -webkit-text-stroke: 0.01px black; /* Outline thickness */
+  color: #000000;
+  background-color: #ffe1c9;
+}
+
+.top-nav a:hover {
+  /* background-color: lightblue; */
+  color: black;
+}
+
+.main {
+  margin-top: 70px; /* Adjust for fixed top navigation bar */
+  padding: 0%;
 }
