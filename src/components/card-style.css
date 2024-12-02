@@ -95,11 +95,30 @@
   color: #dcdcdc;
 }
 
-.master-postcard-container img {
-  width: 80%;
-  height: auto;
+.master-postcard-container .post-image-container {
+  /*Adjusts width to 80% of the parent container */
+  width: auto;
+  /* Static height for all images */
+  /* height: 30%; */
+  height: 220px;
+  object-fit: contain; /* Ensures the image fills the specified dimensions without distortion */
   border-radius: 8px;
+  overflow: hidden;
   /* margin: 10px 0; */
+}
+
+.master-postcard-container .post-image {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+.master-postcard-container .author {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-style: italic;
+  /* background-color: black; */
 }
 
 /* Buttons */
