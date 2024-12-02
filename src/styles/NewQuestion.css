@@ -1,23 +1,44 @@
 .create-master-container {
-  margin: 20px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* margin: 20px; */
+  padding: 5% 20%;
   background-color: #fdfdfd;
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
   border-radius: 8px;
+  margin-bottom: 6%;
 }
 
 .create-master-container h1 {
   font-size: 2rem;
+  margin: 0;
   color: #222;
 }
 
 .create-master-container .form-container {
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mini-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin-top: 2%;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px #0003, 0 6px 20px #00000030;
+  background-color: #a2a1a180;
+  width: 100%;
 }
 
 .create-master-container .mini-container {
   /* display: flex; */
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .create-master-container .mini-container label {
@@ -26,11 +47,22 @@
 }
 
 .create-master-container .mini-container input {
-  width: 100%;
+  /* width: 100%; */
+  font-size: large;
+
   padding: 8px;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+.create-master-container .mini-container #description {
+  /* background-color: white; */
+  display: flex;
+  background-color: #000000;
+  font-size: large;
+  height: 200px;
+  width: 100%;
 }
 
 .create-master-container button {

@@ -1,41 +1,191 @@
-* {
-  /* border: 2px solid yellow; */
-}
-
-form {
+/* account.css */
+.account-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
+  /* width: 1500px; */
+  /* max-width: 1200px; */
+  /* min-width: 900px; */
+  margin: 10px auto;
+  padding: 2%;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  border: 2px black solid;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Alegreya SC", serif;
+
+  /* justify-content: space-between; */
+  gap: 10%;
+  /* width: 100%; */
+}
+.account-container h2 {
+  font-size: 200%;
+  color: #007bff;
+  margin-bottom: 10px;
 }
 
-.btn-logout {
-  background-color: rgb(255, 86, 86);
-  font-weight: bolder;
+.account-container h3 {
+  font-size: 150%;
+  /* color: #007bff; */
+  margin-bottom: 10px;
 }
-.btn-logout:hover {
-  background-color: rgb(255, 157, 157);
+
+.account-container .general-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 80%;
+  gap: 5%;
+  padding: 20px;
+  background-color: #d1d1d1;
+  border-radius: 8px;
+  border-left: 5px solid #007bff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.btn-update {
-  background-color: rgb(55, 88, 255);
-  font-weight: bolder;
+
+.general-details h2 {
+  font-size: 100%;
+  color: #434343;
+  margin: 0;
 }
-.btn-update:hover {
-  background-color: rgb(118, 139, 247);
+
+.general-details span.user-data {
+  display: inline-block;
+  font-weight: bold;
+  color: #333;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.general-details h3 {
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
+
+.account-container .account-managemant .button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 600px;
+  /* gap: 100px; */
+  flex-wrap: wrap;
 }
 
 .button-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  /* gap: 12%; */
+  gap: 15px;
+  margin-top: 15px;
 }
 
-.user-data {
-  border: solid white 2px;
-  padding: 0.5%;
+.button-container button {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-container .btn-update {
+  background-color: #007bff;
+  color: white;
+}
+
+.button-container .btn-update:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.button-container .btn-logout {
+  background-color: #f63939;
+  color: white;
+}
+
+.button-container .btn-logout:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
 }
 
 .q_and_a_container {
   display: flex;
   flex-direction: row;
+  align-items: start;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+  gap: 2%;
+}
+
+.user-posts-container,
+.answer-posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2%;
+  background-color: #e2e1e1;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 2px solid black;
+  width: 100%;
+  gap: 2%;
+}
+
+.user-posts-container .post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.post-container,
+.answer-card {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.master-postcard-container {
+  padding: 2%;
+}
+
+/* 
+.user-posts-container h2,
+.answer-posts-container h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+
+
+} */
+.post-container button,
+.answer-card button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #f63939;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+
+.post-container button:hover,
+.answer-card button:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+p {
+  font-size: 16px;
+  color: #555;
 }

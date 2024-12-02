@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../client";
 import Answer from "../components/Answer";
 import { Link } from "react-router-dom";
+import "./answer-page.css";
 
 const AnswerPage = ({ session }) => {
   const { id: param_id } = useParams(); // Get question ID from URL params
@@ -49,9 +50,6 @@ const AnswerPage = ({ session }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  // console.log(answers);
-  // console.log(session.user.id);
-  console.log(question);
   return (
     <div className="answer-page-container">
       <h1>Answers for: {question?.title}</h1>
@@ -69,8 +67,8 @@ const AnswerPage = ({ session }) => {
             <Answer
               key={answer.id}
               answerId={answer.id}
-              name={answer.profiles?.full_name || "Unknown User"} // Use joined full_name
-              author={answer.profiles?.email || "Unknown User"} // Use joined full_name
+              name={answer.profiles?.full_name || "Unknown User"}
+              author={answer.profiles?.email || "Unknown Email"}
               content={answer.content}
               created_at={answer.created_at}
               accepted={answer.is_accepted}

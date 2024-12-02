@@ -213,16 +213,15 @@ const Account = ({ session }) => {
   return (
     <>
       <div className="account-container">
+        <h2>
+          Welcome, to your Home Page,&nbsp;&nbsp;
+          <span>
+            {session?.user?.user_metadata.full_name ||
+              "User, we don't have your name"}
+          </span>
+          !
+        </h2>
         <div className="general-details">
-          <h1>
-            Welcome,
-            <br />
-            <span>
-              {session?.user?.user_metadata.full_name ||
-                "User, we don't have your name"}
-            </span>
-            !
-          </h1>
           {/* <h1>Welcome, {session?.user?.email || "User"}!</h1> */}
           <h2>
             We have your email as: <br />
@@ -250,7 +249,9 @@ const Account = ({ session }) => {
               {formatTime(session?.user?.created_at)}
             </span>
           </h2>
-          <h3>Manage your account details below:</h3>
+        </div>
+        <h3>Manage your account details below:</h3>
+        <div className="account-managemant">
           <div className="button-container">
             <button onClick={() => setShowModal(true)} className="btn-update">
               Update Personal Info

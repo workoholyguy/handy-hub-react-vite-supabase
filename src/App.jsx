@@ -48,7 +48,10 @@ function App() {
       <Auth
         supabaseClient={supabase}
         appearance={{
-          style: { input: { color: "white" } },
+          style: {
+            input: { color: "black" },
+            form: { padding: " 0%  0%  10px  0%" },
+          },
           theme: ThemeSupa,
         }}
         providers={["github"]}

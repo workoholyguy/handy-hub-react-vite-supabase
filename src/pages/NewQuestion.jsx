@@ -90,7 +90,7 @@ const NewQuestion = ({ session }) => {
           <div className="form-container">
             <div className="mini-container">
               <label htmlFor="title">Title:</label>
-              <br />
+              {/* <br /> */}
               <input
                 required
                 type="text"
@@ -102,8 +102,8 @@ const NewQuestion = ({ session }) => {
             </div>
             <div className="mini-container">
               <label htmlFor="description">Description:</label>
-              <br />
-              <input
+              {/* <br /> */}
+              <textarea
                 required
                 type="text"
                 id="description"
@@ -114,7 +114,7 @@ const NewQuestion = ({ session }) => {
             </div>
             <div className="mini-container">
               <label htmlFor="image_url">Image (optional):</label>
-              <br />
+              {/* <br /> */}
               <input
                 type="url"
                 id="image_url"

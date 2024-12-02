@@ -87,6 +87,7 @@ body {
 .main {
   margin-top: 1%;
   /* padding: 1%; */
+  padding-bottom: 2%;
 }
 
 .app-master-container .bottom-nav {

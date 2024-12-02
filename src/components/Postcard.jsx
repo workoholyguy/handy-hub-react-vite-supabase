@@ -50,10 +50,10 @@ function Postcard({
         <p>
           <strong>Date </strong>: {formatTime(time)}
         </p>
-        <p>
-          <strong>Upvotes </strong>: {upvotes}
-        </p>
       </div>
+      <p>
+        <strong>Upvotes </strong>: {upvotes}
+      </p>
 
       {with_upvote ? (
         <>

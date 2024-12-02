@@ -1,4 +1,3 @@
-// Imports necessary modules and components, including Supabase for database operations.
 import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { useParams, useNavigate } from "react-router-dom";
@@ -64,8 +63,8 @@ const NewAnswer = () => {
     }
   };
 
-  if (error) return <p>{error}</p>;
-  if (!question) return <p>Loading question...</p>;
+  if (error) return <p className="error-message">{error}</p>;
+  if (!question) return <p className="loading-message">Loading question...</p>;
 
   return (
     <div className="new-answer-container">

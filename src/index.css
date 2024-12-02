@@ -48,7 +48,7 @@ button {
 }
 button:hover {
   border-color: #646cff;
-  border: 3px solid #ad5d1c;
+  /* border: 3px solid #ad5d1c; */
 }
 button:focus,
 button:focus-visible {
