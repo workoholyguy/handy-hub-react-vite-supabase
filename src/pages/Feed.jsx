@@ -170,14 +170,8 @@ const Feed = ({ session }) => {
   return (
     <div>
       <div className="feed-master-container">
-        <div className="control-container">
-          <div className="sort-container">
-            <label htmlFor="sort">Sort by:</label>
-            <select id="sort" value={sortCriteria} onChange={handleSortChange}>
-              <option value="created_at">Created Time</option>
-              <option value="upvotes">Upvotes</option>
-            </select>
-          </div>
+        {/* <div className="control-container"> */}
+        <div className="search-and-sort-container">
           <div className="search-container">
             <label htmlFor="search">Search:</label>
             <input
@@ -188,7 +182,15 @@ const Feed = ({ session }) => {
               onChange={handleSearchChange}
             />
           </div>
+          <div className="sort-container">
+            <label htmlFor="sort">Sort by:</label>
+            <select id="sort" value={sortCriteria} onChange={handleSortChange}>
+              <option value="created_at">Created Time</option>
+              <option value="upvotes">Upvotes</option>
+            </select>
+          </div>
         </div>
+        {/* </div> */}
         <div className="questions-container">
           {questionsData.map((question, index) => (
             <div key={index} className="post-container">

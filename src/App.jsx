@@ -1,12 +1,9 @@
-// App.jsx
 import { useState, useEffect } from "react";
 import "./App.css";
 import { useRoutes, Link } from "react-router-dom";
 import { supabase } from "./client";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-
-// Imports for existing components and pages
 
 import Home from "./pages/Home";
 import AllTables from "./pages/AllTables";
@@ -16,9 +13,9 @@ import AnswerPage from "./pages/AnswerPage";
 import NewAnswer from "./pages/NewAnswer";
 import Account from "./pages/Account";
 
-// Authenticated route wrapper
 import PrivateRoute from "./components/PrivateRoute";
 import horizontalLogo from "./assets/Horizontal Logo.png";
+import backgroundCask from "./assets/BackDropCask.webp";
 
 function App() {
   const [session, setSession] = useState(null);
@@ -81,27 +78,37 @@ function App() {
 
   return (
     <div className="app-master-container">
+      <div className="header-image-container">
+        <img src={backgroundCask} alt="Background" className="header-image" />
+      </div>
       <nav className="top-nav">
-        <Link to="/">
-          <img src={horizontalLogo} alt="Logo" />
-        </Link>
-        <button>
+        <img src={horizontalLogo} alt="Logo" className="main-logo" />
+        <button className="btn">
           <Link to="/">Home</Link>
         </button>
-        <button>
+        <button className="btn">
           <Link to="/feed">Feed</Link>
         </button>
-        <button>
+        <button className="btn">
           <Link to="/tables">Tables</Link>
         </button>
-        <button>
+        <button className="btn">
           <Link to="/new-question">New Question</Link>
         </button>
-        <button>
+        <button className="account-btn">
           <Link to="/account">Account</Link>
         </button>
       </nav>
       <div className="main">{element}</div>
+      <nav className="bottom-nav ">
+        <h4>
+          &copy;All rights are reserved 2024. Designed and created by Omar
+          Madjitov @ Avid Tech Usa. See More:{" "}
+          <a href="https://github.com/workoholyguy?tab=repositories">
+            Click Here
+          </a>
+        </h4>
+      </nav>
     </div>
   );
 }

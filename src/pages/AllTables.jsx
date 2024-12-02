@@ -52,7 +52,7 @@ function AllTables() {
     // { key: "user_id", label: "User ID" },
     { key: "title", label: "Title" },
     { key: "description", label: "Description" },
-    { key: "image_url", label: "Image URL" },
+    // { key: "image_url", label: "Image URL" },
     { key: "created_at", label: "Created At" },
     { key: "upvotes", label: "Upvotes" },
   ];

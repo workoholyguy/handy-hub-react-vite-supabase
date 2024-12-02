@@ -25,11 +25,12 @@ function Postcard({
   return (
     <div className="master-postcard-container">
       <Link to={"../answer-page/" + id}>
-        <h2>
-          <strong>Title </strong>: {title}
-        </h2>
+        <h3>
+          {/* <strong>Title </strong>:  */}
+          {title}
+        </h3>
         <p>
-          <strong>Image </strong>:{" "}
+          {/* <strong>Image </strong>:{" "} */}
           <img
             src={`${
               url
@@ -40,13 +41,17 @@ function Postcard({
             style={{ width: "100%", height: "auto" }}
           />
         </p>
+      </Link>
+
+      <div className="date-and-upvotes-container">
         <p>
           <strong>Date </strong>: {formatTime(time)}
         </p>
-      </Link>
-      <p>
-        <strong>Upvotes </strong>: {upvotes}
-      </p>
+        <p>
+          <strong>Upvotes </strong>: {upvotes}
+        </p>
+      </div>
+
       {with_upvote ? (
         <>
           {has_voted ? (
@@ -68,7 +73,7 @@ function Postcard({
       ) : (
         <div className="hidden"></div>
       )}
-      <p>Author: {author}</p>
+      <p className="author">Author: {author}</p>
     </div>
   );
 }

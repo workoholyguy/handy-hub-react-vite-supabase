@@ -1,7 +1,29 @@
 .all-tables-container {
   display: flex;
   flex-direction: column;
-  align-items: flex;
-  justify-content: space-around;
-  padding: 5%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%; /* Make the container take the full width */
+  overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* Adds a scroll bar for tables wider than the container */
+  width: 100%;
+}
+
+table {
+  width: 100%; /* Ensures table matches the container's width */
+  max-width: 80%; /* Prevents table from exceeding the container's width */
+  border-collapse: collapse;
+  word-wrap: break-word; /* Ensures long text wraps inside table cells */
+}
+
+th,
+td {
+  /* padding: 8px; */
+  text-align: left;
+  border: 1px solid #ddd;
 }
