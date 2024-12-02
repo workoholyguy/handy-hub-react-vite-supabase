@@ -112,3 +112,17 @@
 .answer-page-container a:hover {
   background-color: #f9e8a9;
 }
+
+@media (max-width: 768px) {
+  .master-answer-container {
+    padding: 15px;
+  }
+
+  .master-answer-container h2 {
+    font-size: 18px;
+  }
+
+  .master-answer-container h3 {
+    font-size: 14px;
+  }
+}

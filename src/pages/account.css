@@ -189,3 +189,45 @@ p {
   font-size: 16px;
   color: #555;
 }
+
+.account-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.q_and_a_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.user-posts-container,
+.answer-posts-container {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .account-container {
+    padding: 15px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .q_and_a_container {
+    flex-direction: column;
+  }
+}
