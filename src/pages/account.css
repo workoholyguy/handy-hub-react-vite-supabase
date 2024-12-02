@@ -217,17 +217,4 @@ p {
   border-radius: 10px;
 }
 
-@media (max-width: 768px) {
-  .account-container {
-    padding: 15px;
-  }
 
-  .button-container {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .q_and_a_container {
-    flex-direction: column;
-  }
-}

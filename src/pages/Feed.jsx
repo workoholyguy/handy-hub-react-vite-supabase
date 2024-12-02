@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Postcard from "../components/Postcard";
 import { supabase } from "../client";
 import "./feed.css";
+import "./page-styles.css";
 
 const Feed = ({ session }) => {
   const [questionsData, setQuestionsData] = useState([]);

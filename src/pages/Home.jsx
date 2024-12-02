@@ -5,6 +5,7 @@ import "./home.css";
 import background from "../assets/Home-Backdrop.webp";
 import colorPallete from "../assets/Color Palette.webp";
 // import backgroundLong from "../assets/BackDropCask.webp";
+import "./page-styles.css";
 
 function Home() {
   // const backgroundStyle = {

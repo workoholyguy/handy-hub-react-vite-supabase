@@ -11,6 +11,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import UpdateUserModal from "../components/UpdateUserModal";
 import Postcard from "../components/Postcard";
 import Answer from "../components/Answer";
+import "./page-styles.css";
 
 const Account = ({ session }) => {
   const [showModal, setShowModal] = useState(false); // Modal visibility state
@@ -218,8 +219,8 @@ const Account = ({ session }) => {
           <span>
             {session?.user?.user_metadata.full_name ||
               "User, we don't have your name"}
+            !
           </span>
-          !
         </h2>
         <div className="general-details">
           {/* <h1>Welcome, {session?.user?.email || "User"}!</h1> */}

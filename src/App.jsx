@@ -16,6 +16,7 @@ import Account from "./pages/Account";
 import PrivateRoute from "./components/PrivateRoute";
 import horizontalLogo from "./assets/Horizontal Logo.png";
 import backgroundCask from "./assets/BackDropCask.webp";
+import "./pages/page-styles.css";
 
 function App() {
   const [session, setSession] = useState(null);
@@ -79,6 +80,17 @@ function App() {
     { path: "/new-answer/:id/:user_id", element: requireAuth(NewAnswer) },
   ]);
 
+  {
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+      });
+    });
+  }
+
   return (
     <div className="app-master-container">
       <div className="header-image-container">
@@ -102,6 +114,7 @@ function App() {
           <Link to="/account">Account</Link>
         </button>
       </nav>
+
       <div className="main">{element}</div>
       <nav className="bottom-nav ">
         <h4>

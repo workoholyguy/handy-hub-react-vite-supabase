@@ -38,17 +38,6 @@ form {
   font-size: larger;
 }
 
-.mini-container {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  margin: 15px;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px #0003, 0 6px 20px #00000030;
-  background-color: #a2a1a180;
-}
-
 li {
   list-style-type: none; /* This removes the default bullet */
   display: flex;
@@ -103,6 +92,133 @@ button {
 
 /* Media query for small screens (mobile view) */
 @media (max-width: 900px) {
+  * {
+    /* border: solid yellow 2px; */
+  }
+  nav,
+  div,
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+  .top-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 10%;
+  }
+
+  .app-master-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-master-container .home-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+
+  .app-master-container p .app-master-container section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin-top: 10%; */
+    /* margin-bottom: 20%; */
+  }
+
+  .home-master-container {
+    padding-bottom: 10%;
+  }
+
+  .questions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10%;
+    padding-bottom: 10%;
+  }
+
+  .questions-container .post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .account-container * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* padding: 5%; */
+  }
+
+  .account-container h2,
+  .account-container h3 {
+    margin: 0;
+    padding: 0%;
+    text-wrap: stable;
+  }
+
+  .account-container .general-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin: 10%; */
+  }
+
+  .account-container .account-managemant .button-container {
+    display: flex;
+    min-width: none;
+  }
+  .user-posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* padding: 10%; */
+  }
+
+  .user-posts-container .post-container {
+    width: 50%;
+    /* max-width: 600px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    /* padding: 20%; */
+    /* background-color: #000000; */
+  }
+  .answer-posts-container .answer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0%;
+  }
+
+  .answer-posts-container h2,
+  .answer-posts-container h3 {
+    /* width: 40%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .master-answer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* Move navigation bar to the top */
   .side-nav {
     position: relative;
@@ -123,23 +239,46 @@ button {
     border: none;
     text-align: center;
   }
-
   /* Main container adjustment */
-  .app-master-container {
+  /* .app-master-container {
     flex-direction: column;
     align-items: center;
-    padding-top: 3%; /* Add padding for the nav height */
     padding-left: 0px;
+  } */
+  .nav-links {
+    display: none; /* Hide links by default */
+    flex-direction: column;
+    width: 100%;
+    background-color: #000000;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+    border-top: 1px solid #444;
   }
 
-  .home-master-container {
+  .nav-links a {
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block; /* Show menu toggle button */
+  }
+
+  .nav-links.show {
+    display: flex; /* Show links when menu is toggled */
+  }
+
+  /* .home-master-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* padding-left: 0px; */
-  }
+    padding-left: 0px;
+  } */
   .main {
     padding: 0%;
     padding-left: 0px;
