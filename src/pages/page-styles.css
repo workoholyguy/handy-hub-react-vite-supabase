@@ -121,7 +121,8 @@ button {
   }
 
   .top-nav .btn,
-  .top-nav a {
+  .top-nav a,
+  .account-btn {
     margin: 0rem 0.1rem;
     font-size: 2vw;
   }
