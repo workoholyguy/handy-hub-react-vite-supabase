@@ -1,3 +1,8 @@
+.home-master-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4vw;
+}
 .home-master-container img {
   width: 100%; /* Ensures the image stretches the full width of the container */
   height: auto; /* Maintains the aspect ratio */

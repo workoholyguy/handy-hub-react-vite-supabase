@@ -84,7 +84,7 @@ const NewQuestion = ({ session }) => {
   return (
     <>
       <div className="create-master-container">
-        <h1>Submit a New Question !</h1>
+        <h3>Submit a New Question !</h3>
 
         <form>
           <div className="form-container">

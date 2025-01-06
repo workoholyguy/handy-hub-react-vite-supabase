@@ -18,11 +18,11 @@ const Answer = ({ author, name, content, upvotes, created_at, accepted }) => {
 
   return (
     <div className="master-answer-container">
-      <h2>{name ? name : "Unnamed User"} says:</h2>
-      <h3>{content}</h3>
+      <h3>{name ? name : "Unnamed User"} says:</h3>
+      <h4>{content}</h4>
       {/* <p>Upvotes: {upvotes}</p> */}
       <p>Posted at: {formatTime(created_at)}</p>
-      <h3>Author Email: {author ? author : "Unknown Email"}</h3>
+      <h4>Author Email: {author ? author : "Unknown Email"}</h4>
       {accepted && <span className="accepted-badge">Accepted Answer</span>}
     </div>
   );

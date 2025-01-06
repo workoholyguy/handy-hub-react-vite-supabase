@@ -25,10 +25,10 @@ function Postcard({
   return (
     <div className="master-postcard-container">
       <Link to={"../answer-page/" + id}>
-        <h3>
+        <h4>
           {/* <strong>Title </strong>:  */}
           {title}
-        </h3>
+        </h4>
         <p>
           {/* <strong>Image </strong>:{" "} */}
           <div className="post-image-container">
