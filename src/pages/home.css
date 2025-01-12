@@ -45,8 +45,8 @@ img.full-width-image {
   align-items: center;
   justify-content: center;
   border-radius: 1%;
-  padding: 10%;
-  width: 120%;
+  padding: 0.5rem;
+  width: 8rem;
   font-weight: bold;
   /* line-height: 1.5; */
   /* margin: 30% 0% 1% 0%; */
